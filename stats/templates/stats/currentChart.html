@@ -1,0 +1,56 @@
+<div id="CurrentCanvas" >
+
+    <canvas id="currentChart" width="400" height="150"></canvas>
+    <script>
+    const currentContext = document.getElementById('currentChart').getContext('2d');
+
+
+    const currentChart = new Chart(currentContext, {
+        type: 'line',
+        data: {
+            labels:{{created_at_all|safe}} ,
+
+            datasets: [{
+                label: 'Current 1',
+                data: {{dc_48_current1}},
+                backgroundColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                ],
+                borderWidth: 1,
+                tension:0.4,
+            },
+            {
+              label: '',
+              data: {{dc_48_current3}},
+                    backgroundColor: [
+                    'rgba(54, 162, 235, 1)',
+
+                ],
+                borderColor: [
+                    'rgba(54, 162, 235, 1)',
+
+                ],tension:0.4,
+            },
+
+            ]
+        },
+        options: {
+          scales: {
+              x: {
+                    display: false,
+                }
+            },
+            bezierCurve: true,
+            plugins: {
+                legend: {
+                  display: false
+                }
+          },
+         }
+
+    });
+    </script>
+</div>

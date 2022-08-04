@@ -1,0 +1,33 @@
+
+
+    const batteryCtxChart = new Chart(batteryCtx, {
+
+        type: "doughnut",
+  data: {
+    labels: ["Battery Charge"],
+    datasets: [
+      {
+        label: ["# of Votes"],
+        data: {{battery_capacity}},
+        backgroundColor: ["#5fde5d", 'rgb(54, 162, 235)',],
+        borderColor: ["#5fde5d"],
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    circumference: 360,
+    rotation: 180,
+    cutoutPercentage: 40,
+    animateScale: true,
+    animateRotate: true,
+
+
+    onClick() {
+    addText()
+      console.log('clicked');
+    }
+  },
+
+});

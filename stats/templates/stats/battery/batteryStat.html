@@ -1,0 +1,307 @@
+{% extends 'partials/base.html'%}
+ {% block content%}
+
+<div class="row">
+<!--    column for left-->
+  <div class="col-3">
+          <div class="row " style="height: 50%; ">
+
+<!--battery div starts here-->
+              <div id="mainBattery" class="row" style="">
+                  <div id="batteryDiv" align="center" class="batteryDiv " style="">
+                      {% include 'stats/batteryChart.html' %}
+
+                  </div>
+                  <div id="chargeDetails">
+                      {% include 'stats/chargeDetails.html' %}
+                </div>
+
+              </div>
+<!--battery div starts here-->
+
+          </div>
+
+  </div>
+    <!--    column for right-->
+  <div class="col-9">
+      <form method="post" action="" id="searchForm" enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="row m-3" style="color:white;">
+
+
+                <div class="form-group col-2">
+                    <label for="start_date">From</label>
+                    <input class="form-control" type="text"  placeholder="From" id="start_date">
+                </div>
+
+                  <div class="form-group col-2">
+                    <label for="start_time">Time</label>
+                    <select class="form-control" id="start_time">
+                       <option value="Select Start Time">--Start Time--</option>
+                       {% for u_time in unique_time %}
+                      <option value="{{ u_time }}">{{ u_time }}</option>
+                      {% endfor %}
+                    </select>
+                  </div>
+                <div class="form-group col-2 ">
+                     <label for="end_date">To</label>
+                    <input class="form-control" type="text" placeholder="To" id="end_date">
+                </div>
+              <div class="form-group col-2">
+                <label for="end_time">Time</label>
+                <select class="form-control" id="end_time">
+                   <option value="Select End Time">--End Time--</option>
+                    {% for u_time in unique_time %}
+                  <option value="{{ u_time }}">{{ u_time }}</option>
+                  {% endfor %}
+                </select>
+              </div >
+              <div class="col-2">
+                 <label for="end_time">Number of Data</label>
+                 <input class="form-control" required="required" type="text" placeholder="Number" id="numberOfData">
+              </div>
+
+                <div class="col-2">
+                    <label for="end_time">Search</label>
+                    <input class="form-control btn btn-outline-success" type="submit" value="Search" id="search_battery_data">
+                </div>
+
+
+
+        </div>
+  </form>
+    <!--          other voltage details div starts here-->
+        <div id="batteryGraph">
+            {% include 'stats/battery/batteryGraph.html' %}
+        </div>
+    <!--          other voltage details div starts here-->
+  </div>
+</div>
+
+<script>
+$(document).ready(function() {
+
+$( "#start_date,#end_date" ).datepicker({
+changeMonth: true,
+changeYear: true,
+firstDay: 1,
+dateFormat: 'dd/mm/yy',
+})
+
+$( "#start_date" ).datepicker({ dateFormat: 'dd-mm-yy' });
+$( "#end_date" ).datepicker({ dateFormat: 'dd-mm-yy' });
+
+$('#end_date').change(function() {
+    var start = $('#start_date').datepicker('getDate');
+    var end   = $('#end_date').datepicker('getDate');
+
+if (start<end) {
+    var days   = (end - start)/1000/60/60/24;
+$('#days').val(days);
+}
+else {
+  alert ("Please select future date!");
+  $('#startdate').val("");
+  $('#enddate').val("");
+    $('#days').val("");
+}
+}); //end change function
+}); //end ready
+</script>
+
+<script type="text/javascript">
+$(document).ready(function(event){
+    $(document).on('click', '#search_battery_data', function(event){
+    console.log('ajaxxxxxxx')
+    var start_date = document.getElementById('start_date').value
+    var start_time = document.getElementById('start_time').value
+    var end_date = document.getElementById('end_date').value
+    var end_time = document.getElementById('end_time').value
+    var numberOfData = document.getElementById('numberOfData').value
+
+
+// preventing from page reload and default actions
+        event.preventDefault();
+        //var inviteEmail = document.getElementById("inviteEmail").value;
+        if(start_date != '' && start_time != '' && end_date != '' && end_time != '' && numberOfData != '' ){
+            event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url:'{% url 'chats_app:batteryAjax' %}',
+                    data:{'start_date': start_date, 'start_time': start_time, 'end_date': end_date, 'end_time': end_time, 'numberOfData': numberOfData, 'csrfmiddlewaretoken': '{{csrf_token}}'},
+                    dataType: 'json',
+                    success: function(response){
+                       $('#batteryGraph').html(response['batteryGraph'])
+                    },
+                    error: function(response, e){
+                        $('#batteryGraph').html(response['batteryGraph'])
+                    }
+                });
+        }
+        else{
+            console.log('fill all form')
+            alert ("Please fill all the requirements!");
+        }
+
+    });
+});
+
+</script>
+<style>
+    .batteryDiv {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left:5%;
+  top:0%
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dvInside {
+  position: relative;
+  left: 0%;
+  top: 27%;
+    width: 300px;
+  height: 200px;
+  opacity: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#chargingOrCharged{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  left:35%;
+  top:35%
+
+
+}
+
+.ui-datepicker {
+    width: 300px;
+    height: 300px;
+    margin: 5px auto 0;
+    font: 12pt Arial, sans-serif;
+    background: #000;
+    /*-webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+    -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);*/
+}
+
+    .ui-datepicker table {
+        width: 100%;
+    }
+
+.ui-datepicker-header {
+    background: #3399ff;
+    color: #ffffff;
+    font-family:'Times New Roman';
+    border-width: 1px 0 0 0;
+    border-style: solid;
+    border-color: #111;
+    background-color:#fff;
+}
+
+.ui-datepicker-title {
+    text-align: center;
+    font-size: 15px;
+    color:#fff
+
+}
+
+.ui-datepicker-prev {
+    float: left;
+    cursor: pointer;
+    background-position: center -30px;
+}
+
+
+.ui-datepicker-next {
+    float: right;
+    cursor: pointer;
+    background-position: center 0px;
+}
+
+
+.ui-datepicker thead {
+    background-color: #fff;
+
+    /*border-bottom: 1px solid #bbb;*/
+}
+.ui-datepicker th {
+    background-color:#808080;
+    text-transform: uppercase;
+    font-size: 8pt;
+    color: #fff;
+    /*text-shadow: 1px 0px 0px #fff;*/
+    /*filter: dropshadow(color=#fff, offx=1, offy=0);*/
+}
+
+.ui-datepicker tbody td {
+    padding: 0;
+    /*border-right: 1px solid #808080;*/
+}
+
+    .ui-datepicker tbody td:last-child {
+        border-right: 0px;
+    }
+
+.ui-datepicker tbody tr {
+    border-bottom: 1px solid #bbb;
+    background-color:#fff;
+}
+
+    .ui-datepicker tbody tr:last-child {
+        border-bottom: 0px;
+    }
+
+.ui-datepicker a {
+    text-decoration: none;
+}
+
+.ui-datepicker td span, .ui-datepicker td a {
+    display: inline-block;
+    /*font-weight: bold;*/
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    color: #ffffff;
+    /*text-shadow: 1px 1px 0px #fff;*/
+    /*filter: dropshadow(color=#fff, offx=1, offy=1);*/
+}
+
+.ui-datepicker-calendar .ui-state-default {
+      background: linear-gradient(#999999, #737373);
+      color:#ffffff;
+      height:40px;
+      width:40px;
+
+}
+
+.ui-datepicker-calendar .ui-state-hover {
+    background: #33adff;
+    color: #FFFFFF;
+}
+
+.ui-datepicker-calendar .ui-state-active {
+    background: #33adff;
+    -webkit-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    -moz-box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    box-shadow: inset 0px 0px 10px 0px rgba(0, 0, 0, .1);
+    color: #e0e0e0;
+    text-shadow: 0px 1px 0px #4d7a85;
+    border: 1px solid #55838f;
+    position: relative;
+    margin: -1px;
+}
+
+.ui-datepicker-unselectable .ui-state-default {
+    background: #D6E4BE;
+    color: #000;
+}
+</style>
+    {% endblock%}

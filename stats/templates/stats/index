@@ -1,0 +1,64 @@
+{% extends 'partials/base.html'%}
+ {% block content%}
+
+
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-6">
+      <div id="currentDiv">
+
+            {% include 'stats/currentChart.html' %}
+         </div>
+    </div>
+    <div class="col-6">
+       <div id="voltageDiv">
+            {% include 'stats/voltageChart.html' %}
+         </div>
+    </div>
+
+  </div>
+  <div class="row mt-4">
+    <div class="col-6">
+          <div id="batteryDiv">
+            {% include 'stats/batteryChart.html' %}
+         </div>
+    </div>
+    <div class="col-6">
+       <div id="pv1Div">
+        {% include 'stats/pv1Chart.html' %}
+     </div>
+    </div>
+  </div>
+</div>
+
+<!-- start script - call ajax to refresh the data every 10000 miliseconds-->
+ <script>
+    var auto_refresh = setInterval(
+        function ()
+        {
+        console.log('member id');
+
+            $.ajax({
+                type: 'POST',
+                url:'{% url 'chats_app:index' %}',
+                data:{ 'csrfmiddlewaretoken': '{{csrf_token}}' },
+                dataType: 'json',
+                success: function(response){
+                   $('#currentDiv').html(response['currentHtml'])
+                    $('#voltageDiv').html(response['voltageHtml'])
+                    $('#batteryDiv').html(response['batteryHtml'])
+                    $('#pv1Div').html(response['pv1Html'])
+                },
+                error: function(response, e){
+                    $('#currentDiv').html(response['currentHtml'])
+                    $('#voltageDiv').html(response['voltageHtml'])
+                    $('#batteryDiv').html(response['batteryHtml'])
+                    $('#pv1Div').html(response['pv1Html'])
+                }
+            });
+
+        }, 10000); // refresh every 10000 milliseconds
+
+ </script>
+<!-- end script - call ajax to refresh the data every 10000 miliseconds-->
+    {% endblock%}

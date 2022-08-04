@@ -1,0 +1,60 @@
+<div id="VoltageCanvas">
+    <canvas id="voltageChart" width="400" height="150"></canvas>
+    <script>
+    const voltageCtx = document.getElementById('voltageChart').getContext('2d');
+    const voltageCtxChart = new Chart(voltageCtx, {
+        type: 'bar',
+        data: {
+            labels:['Voltage(48) from Inverter', 'Voltage(24) From Inverter'],
+            datasets: [{
+                label: '# c_48_voltage1',
+                data: [{{dc_48_voltage1}}, {{dc_48_voltage2}}],
+                backgroundColor: [
+                    'rgba(255, 206, 86, 1)', 'rgba(54, 162, 235, 1)',
+                ],
+                borderColor: [
+                    'rgba(255, 206, 86, 1)',
+                ],
+            },
+
+            ]
+        },
+
+        options: {
+         plugins: {
+                legend: {
+                  display: false
+                }
+          },
+            indexAxis: 'y',
+                scales: {
+                          y: {  // not 'yAxes: [{' anymore (not an array anymore)
+                            ticks: {
+                              color: "white", // not 'fontColor:' anymore
+                              // fontSize: 18,
+                              font: {
+                                size: 18, // 'size' now within object 'font {}'
+                              },
+                              stepSize: 1,
+                              beginAtZero: true
+                            }
+                          },
+<!--                          x: {  // not 'xAxes: [{' anymore (not an array anymore)-->
+<!--                            ticks: {-->
+<!--                              color: "purple",  // not 'fontColor:' anymore-->
+<!--                              //fontSize: 14,-->
+<!--                              font: {-->
+<!--                                size: 14 // 'size' now within object 'font {}'-->
+<!--                              },-->
+<!--                              stepSize: 1,-->
+<!--                              beginAtZero: true-->
+<!--                            }-->
+<!--                          },-->
+                        }
+
+            },
+
+
+    });
+    </script>
+</div>

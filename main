@@ -1,0 +1,45 @@
+import json
+def sendData_db(headers):
+    global modbus
+    url =  "http://10.0.0.10:8000/ds/data-list/"
+    dc_48_current = readCurrents(adc2)
+    dc_48_voltage = readVoltages(adc2)
+
+    PV_info = modbus.read_input_registers(0x55,0x03,0x04,signed=True)
+    BMS_Info = modbus.read_input_registers(0x55,0x58,0x02,signed=True)
+
+    battery = modbus.read_input_registers(0x55,0x51,0x01,signed=True)[0]
+    pv1_current = PV_info[2]/10
+    pv1_voltage = PV_info[0]/10
+    bms_voltage = BMS_Info[0]/10
+    bms_current = BMS_Info[1]/10
+
+
+
+    data={
+        "dc_48_current1": dc_48_current[0],
+        "dc_48_current2": dc_48_current[1],
+        "dc_48_current3": dc_48_current[2],
+        "dc_48_current4": dc_48_current[2],
+        "dc_48_current5": dc_48_current[4],
+        "dc_48_voltage1": dc_48_voltage[0],
+        "dc_48_voltage2": dc_48_voltage[1],
+        "pv1_voltage": pv1_voltage,
+        "pv1_current": pv1_current,
+        "bms_voltage": bms_voltage,
+        "bms_current": bms_current,
+        "battery_capacity": battery
+    }
+    jsonData = json.dumps(data)
+
+
+    print("Sending to local database")
+    try:
+      c = urequests.post(url, data=jsonData, headers=headers)
+    except Exception as e:
+      print(e)
+
+
+headers = {'Authorization': 'Token be3d43142fa9a096398e67bb2f5a64da1d88cb1e', 'Content-Type': 'application/json'}
+
+timerCallback = machine.Timer.Alarm(sendData_db, 5.0, arg = (headers, url), periodic = True)

@@ -1,0 +1,124 @@
+{% extends 'partials/base.html'%}
+ {% block content%}
+
+<div class="row">
+<!--    column for left-->
+  <div class="col-5">
+          <div class="row " style="height: 50%; ">
+
+<!--battery div starts here-->
+              <div id="mainBattery" class="row" style="">
+                  <div id="batteryDiv" align="center" class="batteryDiv " style="">
+                      {% include 'stats/batteryChart.html' %}
+
+                  </div>
+                  <div id="chargeDetails">
+                      {% include 'stats/chargeDetails.html' %}
+                </div>
+
+              </div>
+<!--battery div starts here-->
+
+
+          </div>
+          <div class="row mt-3 " style="">
+
+   <!--Current div starts here-->
+
+              <div id="currentDiv" class=" col" style="">
+                {% include 'stats/currentChart.html' %}
+                  <strong style=" color:white; font-size:20px;" > Flow of current from DC Hub</strong>
+            </div>
+<!--Current div ends here-->
+          </div>
+
+
+  </div>
+    <!--    column for right-->
+  <div class="col-7">
+    <!--          other voltage details div starts here-->
+
+        <div id="pv1Div">
+            {% include 'stats/pv1Chart.html' %}
+        </div>
+      <div id="DcHub2">
+            {% include 'stats/voltHt.html' %}
+        </div>
+
+    <!--          other voltage details div starts here-->
+  </div>
+</div>
+
+<style>
+    .batteryDiv {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left:15%;
+  top:0%
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dvInside {
+  position: relative;
+  left: 29%;
+  top: 27%;
+    width: 300px;
+  height: 200px;
+  opacity: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#chargingOrCharged{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  left:45%;
+  top:35%
+
+
+}
+</style>
+
+<!-- start script - call ajax to refresh the data every 10000 miliseconds-->
+ <script>
+    var auto_refresh = setInterval(
+        function ()
+        {
+        console.log('member id');
+
+            $.ajax({
+                type: 'POST',
+                url:'{% url 'chats_app:index' %}',
+                data:{ 'csrfmiddlewaretoken': '{{csrf_token}}' },
+                dataType: 'json',
+                success: function(response){
+                   $('#currentDiv').html(response['currentHtml'])
+                    $('#voltageDiv').html(response['voltageHtml'])
+                    $('#batteryDiv').html(response['batteryHtml'])
+                    $('#pv1Div').html(response['pv1Html'])
+                    $('#DcHub2').html(response['voltHt'])
+                    $('#chargeDetails').html(response['chargeDetails'])
+                },
+                error: function(response, e){
+                    $('#currentDiv').html(response['currentHtml'])
+                    $('#voltageDiv').html(response['voltageHtml'])
+                    $('#batteryDiv').html(response['batteryHtml'])
+                    $('#pv1Div').html(response['pv1Html'])
+                }
+            });
+
+        }, 30000); // refresh every 10000 milliseconds
+
+ </script>
+<!-- end script - call ajax to refresh the data every 10000 miliseconds-->
+<!--start script to call ajax to search the battery data -->
+
+<!--end script to call ajax to search the battery data -->
+
+
+    {% endblock%}

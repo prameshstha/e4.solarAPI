@@ -1,0 +1,193 @@
+{% extends 'partials/base.html'%}
+ {% block content%}
+
+
+<div class="container-fluid">
+  <div class="row mt-4">
+    <div class="col-6">
+      <div id="batteryDiv" align="center" class="batteryDiv">
+          {% include 'stats/batteryChart.html' %}
+          <div class="dvInside">
+              <h1 style=" color:white; font-size:55px;" >85%</h1>
+          </div>
+          <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Charging</strong>
+
+
+         </div>
+    </div>
+    <div class="col-6">
+        <div class="row">
+            <div class="col-5">
+                <div class="row" style="height:20; color:black">
+                    Dummy div
+                </div>
+                 <div class="row" style="height:20; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(48) From Inverter</strong>
+
+
+                <div class="row" style="height:30; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(24) From Inverter</strong>
+
+
+            </div>
+            <div id="voltageDiv" class="col-7">
+                {% include 'stats/voltageChart.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="row" style="height:40; color:black">
+                    Dummy div
+                </div>
+                 <div class="row" style="height:40; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(48) From PV </strong>
+
+
+                <div class="row" style="height:40; color:black">
+                    Dummy div
+
+                </div>
+
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Current From PV</strong>
+
+
+            </div>
+                   <div id="pv1Div" class="col-7">
+                     {% include 'stats/pv1Chart.html' %}
+                </div>
+
+        </div>
+
+    </div>
+
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+        <div id="currentDiv" class="col-8">
+                {% include 'stats/currentChart.html' %}
+            </div>
+        <div class=" p-4"><strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" > Flow of current from DC Hub</strong></div>
+
+    </div>
+    <div class="col-6">
+
+
+
+                <div class="row">
+            <div class="col-5">
+                <div class="row" style="height:40; color:black">
+                    Dummy div
+                </div>
+                 <div class="row" style="height:40; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(48) to Hot water</strong>
+
+
+                <div class="row" style="height:40; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(24) to Refrigerator</strong>
+
+
+            </div>
+            <div id="voltageDiv1" class="col-7">
+                {% include 'stats/voltHt.html' %}
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-5">
+                <div class="row" style="height:20; color:black">
+                    Dummy div
+                </div>
+                 <div class="row" style="height:20; color:black">
+                    Dummy div
+
+                </div>
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(24) to Lights </strong>
+
+
+                <div class="row" style="height:20; color:black">
+                    Dummy div
+
+                </div>
+
+                    <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >Voltage(24) to other Appliances</strong>
+
+
+            </div>
+                   <div id="pv1Div1" class="col-7">
+                     {% include 'stats/voltRef.html' %}
+                </div>
+
+        </div>
+<div id="currentDiv1">
+            <!--            {% include 'stats/currentChart.html' %}-->
+         </div>
+    </div>
+  </div>
+</div>
+<style>
+    .batteryDiv {
+  position: relative;
+  width: 300px;
+  height: 200px;
+  left:20%;
+  top:-15%
+}
+
+.dvInside {
+  position: absolute;
+  left: 0%;
+  top: 62%;
+    width: 300px;
+  height: 200px;
+  opacity: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
+
+<!-- start script - call ajax to refresh the data every 10000 miliseconds-->
+<!-- <script>-->
+<!--    var auto_refresh = setInterval(-->
+<!--        function ()-->
+<!--        {-->
+<!--        console.log('member id');-->
+
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url:'{% url 'chats_app:index' %}',-->
+<!--                data:{ 'csrfmiddlewaretoken': '{{csrf_token}}' },-->
+<!--                dataType: 'json',-->
+<!--                success: function(response){-->
+<!--                   $('#currentDiv').html(response['currentHtml'])-->
+<!--                    $('#voltageDiv').html(response['voltageHtml'])-->
+<!--                    $('#batteryDiv').html(response['batteryHtml'])-->
+<!--                    $('#pv1Div').html(response['pv1Html'])-->
+<!--                },-->
+<!--                error: function(response, e){-->
+<!--                    $('#currentDiv').html(response['currentHtml'])-->
+<!--                    $('#voltageDiv').html(response['voltageHtml'])-->
+<!--                    $('#batteryDiv').html(response['batteryHtml'])-->
+<!--                    $('#pv1Div').html(response['pv1Html'])-->
+<!--                }-->
+<!--            });-->
+
+<!--        }, 10000); // refresh every 10000 milliseconds-->
+
+<!-- </script>-->
+<!-- end script - call ajax to refresh the data every 10000 miliseconds-->
+    {% endblock%}

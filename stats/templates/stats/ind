@@ -1,0 +1,56 @@
+<div class="col-6">
+      <div id="batteryDiv" align="center" class="batteryDiv">
+          {% include 'stats/batteryChart.html' %}
+          <div class="dvInside">
+              <h1 style=" color:white; font-size:35px;" >{{battery_capacity|first}}%</h1>
+          </div>
+          <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >
+              {% if battery_capacity|first == 100.0 %}
+              Charged
+              {% else %}
+              Charging
+              {% endif %}
+          </strong>
+
+
+         </div>
+    </div>
+    <div class="col-6">
+
+            <div id="voltageDiv" class="" style="height:300;">
+                {% include 'stats/voltageChart.html' %}
+                     {% include 'stats/pv1Chart.html' %}
+                </div>
+
+
+    </div>
+
+  </div>
+  <div class="row mt-5">
+    <div class="col-6">
+        <div id="currentDiv" class="col-8">
+                {% include 'stats/currentChart.html' %}
+            </div>
+        <div class=" p-4"><strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" > Flow of current from DC Hub</strong></div>
+
+    </div>
+
+
+<div id="currentDiv1">
+            <!--            {% include 'stats/currentChart.html' %}-->
+         </div>
+    </div>
+
+
+
+          <div class="col-7">
+<!--          other voltage details div starts here-->
+
+
+            <div id="voltageDiv" class="" style="height:300;">
+                {% include 'stats/voltageChart.html' %}
+                     {% include 'stats/pv1Chart.html' %}
+                </div>
+
+<!--          other voltage details div starts here-->
+      </div>

@@ -1,0 +1,39 @@
+<div id="BatteryCanvas">
+    <canvas id="batteryChart" width="400" height="400"></canvas>
+    <script>
+    const batteryCtx = document.getElementById('batteryChart').getContext('2d');
+    const batteryCtxChart = new Chart(batteryCtx, {
+
+        type: "doughnut",
+  data: {
+    labels: ["Battery Charge"],
+    datasets: [
+      {
+        label: ["# of Votes"],
+        data: [20],
+        backgroundColor: ["rgba(0,128,0, 1)"],
+        borderColor: ["rgba(0,128,0, 1)"],
+        borderWidth: 1
+      }
+    ]
+  },
+  options: {
+    maintainAspectRatio: false,
+    circumference: 360,
+    rotation: 180,
+    cutoutPercentage: 7,
+    animateScale: true,
+    animateRotate: true,
+
+
+    onClick() {
+    addText()
+      console.log('clicked');
+    }
+  },
+
+});
+
+
+    </script>
+</div>

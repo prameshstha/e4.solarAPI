@@ -1,0 +1,184 @@
+{% extends 'partials/base.html'%}
+ {% block content%}
+
+<div class="row">
+<!--    column for left-->
+  <div class="col-3">
+          <div class="row " style="height: 50%; ">
+
+<!--battery div starts here-->
+              <div id="mainBattery" class="row" style="">
+                  <div id="batteryDiv" align="center" class="batteryDiv " style="">
+                      {% include 'stats/batteryChart.html' %}
+
+                  </div>
+                  <div id="chargeDetails">
+                      {% include 'stats/chargeDetails.html' %}
+                </div>
+
+              </div>
+<!--battery div starts here-->
+
+          </div>
+
+  </div>
+    <!--    column for right-->
+  <div class="col-9">
+    <div class="row m-3" style="color:white;">
+
+        <div class="form-group col-3">
+            <label for="start_date">From date</label>
+            <select class="form-control" id="start_date">
+              <option value="Select Date">--Select Date--</option>
+               {% for u_date in unique_date %}
+              <option value="{{ u_date }}">{{ u_date }}</option>
+              {% endfor %}
+            </select>
+      </div>
+
+      <div class="form-group col-3">
+        <label for="start_time">Time</label>
+        <select class="form-control" id="start_time">
+           <option value="Select Start Time">--Select Start Time--</option>
+           {% for u_time in unique_time %}
+          <option value="{{ u_time }}">{{ u_time }}</option>
+          {% endfor %}
+        </select>
+      </div>
+          <div class="form-group col-3">
+            <label for="end_date">To date</label>
+            <select class="form-control" id="end_date">
+              <option value="Select Date">--Select Date--</option>
+               {% for u_date in unique_date %}
+              <option value="{{ u_date }}">{{ u_date }}</option>
+              {% endfor %}
+            </select>
+      </div>
+      <div class="form-group col-3">
+        <label for="end_time">Time</label>
+        <select class="form-control" id="end_time">
+           <option value="Select End Time">--Select End Time--</option>
+        </select>
+      </div>
+    </div>
+    <!--          other voltage details div starts here-->
+
+        <div id="pv1Div">
+            {% include 'stats/battery/batteryGraph.html' %}
+        </div>
+
+
+    <!--          other voltage details div starts here-->
+  </div>
+</div>
+
+<style>
+    .batteryDiv {
+  position: absolute;
+  width: 300px;
+  height: 200px;
+  left:5%;
+  top:0%
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.dvInside {
+  position: relative;
+  left: 0%;
+  top: 27%;
+    width: 300px;
+  height: 200px;
+  opacity: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#chargingOrCharged{
+  position: relative;
+  width: 300px;
+  height: 200px;
+  left:35%;
+  top:35%
+
+
+}
+</style>
+<script>
+
+ $('#start_date').change(function () {
+     var startdate = $(this).val();
+     var date = {{unique_date|safe}}
+     console.log(Date(startdate), date[0]);
+     console.log(( startdate-date[0])/1000/60/60/24);
+ });
+
+
+
+
+    $('#start_time').change(function () {
+    var data = $(this).val();
+    console.log(data);
+    var time = {{unique_time|safe}};
+    var endtime = [];
+    select = document.getElementById('end_time');
+    for(i = select.options.length-1; i > 0; i--) {
+      select.remove(i);
+    }
+    if(data == 'Select Start Time'){
+        endtime.length = 0;
+        select.options[select.options.length] = null;
+        console.log('select time', endtime)
+    }
+    else{
+        console.log('actual time')
+        for(var i=0;i<time.length;i++) {
+            if(time[i]>data){
+                endtime.push(time[i])
+            }
+        }
+        if(endtime.length==0){
+            endtime = ['23:55']
+        }
+        for(var i=0;i<endtime.length;i++) {
+            select.options[select.options.length] = new Option(endtime[i], endtime[i]);
+        }
+    }
+});
+</script>
+
+<!-- start script - call ajax to refresh the data every 10000 miliseconds-->
+<!-- <script>-->
+<!--    var auto_refresh = setInterval(-->
+<!--        function ()-->
+<!--        {-->
+<!--        console.log('member id');-->
+
+<!--            $.ajax({-->
+<!--                type: 'POST',-->
+<!--                url:'{% url 'chats_app:battery' %}',-->
+<!--                data:{ 'csrfmiddlewaretoken': '{{csrf_token}}' },-->
+<!--                dataType: 'json',-->
+<!--                success: function(response){-->
+<!--                   $('#currentDiv').html(response['currentHtml'])-->
+<!--                    $('#voltageDiv').html(response['voltageHtml'])-->
+<!--                    $('#batteryDiv').html(response['batteryHtml'])-->
+<!--                    $('#pv1Div').html(response['pv1Html'])-->
+<!--                    $('#DcHub2').html(response['voltHt'])-->
+<!--                    $('#chargeDetails').html(response['chargeDetails'])-->
+<!--                },-->
+<!--                error: function(response, e){-->
+<!--                    $('#currentDiv').html(response['currentHtml'])-->
+<!--                    $('#voltageDiv').html(response['voltageHtml'])-->
+<!--                    $('#batteryDiv').html(response['batteryHtml'])-->
+<!--                    $('#pv1Div').html(response['pv1Html'])-->
+<!--                }-->
+<!--            });-->
+
+<!--        }, 10000); // refresh every 10000 milliseconds-->
+
+<!-- </script>-->
+<!-- end script - call ajax to refresh the data every 10000 miliseconds-->
+    {% endblock%}

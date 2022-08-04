@@ -1,0 +1,12 @@
+   <div class="dvInside" style="">
+          <h1 style=" color:white; font-size:35px;" >{{battery_capacity|first}}%</h1>
+      </div>
+  <div id="chargingOrCharged">
+      <strong style=" color:white; font-size:20px; font-family: Arial, Helvetica, sans-serif;" >
+          {% if battery_capacity|first == 100.0 %}
+          Charged
+          {% else %}
+          Charging
+          {% endif %}
+      </strong>
+  </div>
