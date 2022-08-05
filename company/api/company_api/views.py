@@ -392,7 +392,7 @@ class InsertInitialAddress(APIView):
         # print("File      Path:", Path(__file__).parent.resolve())
         # "E:/DarwinSolar/ServerProject/australia_address/australia_address.geojson"
 
-        with open("E:/DarwinSolar/ServerProject/australia_address/australia_address.geojson", 'r') as f:
+        with open("/Users/keithjury/DsProjects/australia_address.geojson", 'r') as f:
             for count, line in enumerate(f):
                 # print(line)
                 js = json.loads(line)

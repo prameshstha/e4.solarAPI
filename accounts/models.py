@@ -115,6 +115,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     postcode = models.CharField(max_length=120, blank=True)
     state = models.CharField(max_length=120, blank=True)
     country = models.CharField(max_length=120, blank=True)
+    pv_applied = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name) + ' ' + str(self.email)

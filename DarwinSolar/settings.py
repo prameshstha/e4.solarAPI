@@ -156,31 +156,31 @@ WSGI_APPLICATION = 'DarwinSolar.wsgi.application'
 
 # this is for aws server mysql
 
-DATABASES = {
-    'default': {
-        # 'ENGINE': 'django.db.backends.mysql',
-        'ENGINE': 'mysql.connector.django',
-        'NAME': k.DB_NAME,
-        'USER': k.DB_USER,
-        'PASSWORD': k.DB_PASSWORD,
-        'HOST': k.DB_HOST,
-        'PORT': 3306
-    }
-}
-
-#  this is for local server mysql
-
 # DATABASES = {
 #     'default': {
 #         # 'ENGINE': 'django.db.backends.mysql',
 #         'ENGINE': 'mysql.connector.django',
-#         'NAME': 'e4solar',
-#         'USER': 'root',
-#         'PASSWORD': '',
-#         'HOST': 'localhost',
+#         'NAME': k.DB_NAME,
+#         'USER': k.DB_USER,
+#         'PASSWORD': k.DB_PASSWORD,
+#         'HOST': k.DB_HOST,
 #         'PORT': 3306
 #     }
 # }
+
+#  this is for local server mysql
+
+DATABASES = {
+    'default': {
+        # 'ENGINE': 'django.db.backends.mysql',
+        'ENGINE': 'mysql.connector.django',
+        'NAME': 'e4solar',
+        'USER': 'root',
+        'PASSWORD': '',
+        'HOST': 'localhost',
+        'PORT': 3306
+    }
+}
 
 
 # Password validation
