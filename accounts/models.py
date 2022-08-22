@@ -106,6 +106,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
         ),
     )
     is_superuser = models.BooleanField(default=False)
+    is_installer = models.BooleanField(default=False)
     is_customer = models.BooleanField(default=True)
     date_joined = models.DateTimeField('date joined', default=timezone.now)
     customer_crm_id = models.CharField(max_length=255, unique=True, blank=True, null=True)
@@ -115,7 +116,6 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
     postcode = models.CharField(max_length=120, blank=True)
     state = models.CharField(max_length=120, blank=True)
     country = models.CharField(max_length=120, blank=True)
-    pv_applied = models.BooleanField(default=False)
 
     def __str__(self):
         return str(self.first_name) + ' ' + str(self.last_name) + ' ' + str(self.email)
@@ -162,7 +162,7 @@ class InstallerUser(AbstractBaseUser):
         help_text='Designates whether the user can log into this admin site.',
     )
     is_active = models.BooleanField(
-        default=True,
+        default=False,
         help_text=(
             'Designates whether this user should be treated as active. '
             'Unselect this instead of deleting accounts.'

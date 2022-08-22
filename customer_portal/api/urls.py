@@ -2,7 +2,7 @@ from django.urls import path
 
 from company.api.installer_api.views import CommonCustomerFileView
 from customer_portal.api.views import AllCustomerFileView, CustomerFileView, SearchJob, CustomerJob, \
-    AllFileTypeView, EditDeleteFileTypeView, ZapTest
+    AllFileTypeView, EditDeleteFileTypeView, CustomerJobEditByUser, EditCustomerAllDetails, ZapTest
 
 urlpatterns = [
     path('file-list/', AllCustomerFileView.as_view(), name='file-list'),
@@ -14,6 +14,10 @@ urlpatterns = [
     path('edit-delete-file-types/<int:pk>/', EditDeleteFileTypeView.as_view(), name='edit-delete-file-types'),
     path('job-search/<int:customer_id>/', SearchJob.as_view(), name='job-search'),
     path('<int:customer_id>/', CustomerJob.as_view(), name='customer-job'),
+    path('by-user/<int:customer_id>/', CustomerJobEditByUser.as_view(), name='customer-job-user'),
+
+    path('update-customer-all-details/<str:is_finalized>/', EditCustomerAllDetails.as_view(), name='customer-job'),
+
     path('<int:customer_id>/customer-files/', CustomerFileView.as_view(), name='file-search'),
     path('zap/', ZapTest.as_view(), name='file-search'),
 

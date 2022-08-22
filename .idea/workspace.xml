@@ -2,7 +2,34 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a851d598-6c42-405c-973b-34ecf7a64190" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/accounts/templates/Test_email_form.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/templates/customer_data_saved.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/accounts/templates/nmi_request.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/customer_portal/templates/email_accounts_order_list.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/DarwinSolar/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/DarwinSolar/settings.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DarwinSolar/utils.py" beforeDir="false" afterPath="$PROJECT_DIR$/DarwinSolar/utils.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/accounts/templates/reset_password_email.html" beforeDir="false" afterPath="$PROJECT_DIR$/accounts/templates/reset_password_email.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/api/company_api/serializer.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/api/company_api/serializer.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/api/company_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/api/company_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/api/company_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/api/company_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/api/installer_api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/api/installer_api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/api/installer_api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/api/installer_api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/company/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/company/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/admin.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer_portal/admin.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/api/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer_portal/api/urls.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/api/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer_portal/api/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/migrations/0001_initial.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/migrations/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/customer_portal/models.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/customer_portal/templates/email_attached_file.html" beforeDir="false" afterPath="$PROJECT_DIR$/customer_portal/templates/email_attached_file.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/requirements.txt" beforeDir="false" afterPath="$PROJECT_DIR$/requirements.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,11 +39,61 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer_portal/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="132">
+              <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/company/api/installer_api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="374">
+              <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#28#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/company/api/installer_api/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="11440">
+              <caret line="550" column="93" selection-start-line="550" selection-start-column="93" selection-end-line="550" selection-end-column="93" />
+              <folding>
+                <element signature="e#0#9#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.ebextensions/django.config">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="44">
+              <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/DarwinSolar/wsgi.py">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DarwinSolar/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="500">
-              <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+            <state relative-caret-position="44">
+              <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
               <folding>
                 <element signature="e#309#318#0" expanded="true" />
               </folding>
@@ -27,8 +104,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/e4sk.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="440">
-              <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+            <state relative-caret-position="198">
+              <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="45" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/requirements.txt">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="462">
+              <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer_portal/templates/email_accounts_order_list.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="3498">
+              <caret line="159" selection-start-line="159" selection-end-line="159" />
+              <folding>
+                <element signature="n#style#0;n#p#3;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer_portal/models.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1606">
+              <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
             </state>
           </provider>
         </entry>
@@ -38,43 +145,43 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="Python Script" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>req['']</find>
-      <find>postcode</find>
-      <find>null</find>
-      <find>database</find>
-      <find>model_to_dict</find>
-      <find>modify_input_for_multiple_files</find>
-      <find>apiRequest</find>
-      <find>ins</find>
-      <find>file_type</find>
-      <find>CustomerFilesSerializer</find>
-      <find>prov</find>
-      <find>not p</find>
-      <find>address</find>
-      <find>addre</find>
-      <find>loop</find>
-      <find>IsAuthenticated</find>
-      <find>pass</find>
-      <find>installeruser</find>
-      <find>dear</find>
-      <find>login</find>
-      <find>send</find>
-      <find>emailThread</find>
-      <find>CreateListCompany</find>
-      <find>hubspot_id</find>
-      <find>abcljdjf</find>
-      <find>job</find>
-      <find>uploa</find>
-      <find>darwinsolar</find>
       <find>darwin solar</find>
       <find>hi</find>
+      <find>abc</find>
+      <find>encoded</find>
+      <find>nmi</find>
+      <find>company</find>
+      <find>fill f</find>
+      <find>fin</find>
+      <find>back_panel</find>
+      <find>field</find>
+      <find>valid</find>
+      <find>admin</find>
+      <find>invi</find>
+      <find>passwordreset</find>
+      <find>&lt;a</find>
+      <find>fill</find>
+      <find>link</find>
+      <find>sendNmi</find>
+      <find>user already ad</find>
+      <find>bool</find>
+      <find>email</find>
+      <find>dear</find>
+      <find>url</find>
+      <find>upload</find>
+      <find>all</find>
+      <find>send_email_about_files</find>
+      <find>thanks</find>
+      <find>split</find>
+      <find>path</find>
+      <find>mar</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -89,25 +196,11 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/customer_portal/app/urls.py" />
-        <option value="$PROJECT_DIR$/customer_portal/app/views.py" />
-        <option value="$PROJECT_DIR$/accounts/installer_api/views.py" />
-        <option value="$PROJECT_DIR$/company/api/serializer.py" />
-        <option value="$PROJECT_DIR$/accounts/installer_api/urls.py" />
-        <option value="$PROJECT_DIR$/customer_portal/migrations/0003_auto_20220704_1514.py" />
-        <option value="$PROJECT_DIR$/company/api/urls.py" />
-        <option value="$PROJECT_DIR$/company/api/views.py" />
-        <option value="$PROJECT_DIR$/DarwinSolar/urls.py" />
-        <option value="$PROJECT_DIR$/company/api/app/views.py" />
-        <option value="$PROJECT_DIR$/company/api/app/urls.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0004_auto_20220706_1411.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0005_auto_20220707_1041.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0006_auto_20220707_1143.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0007_auto_20220707_1426.py" />
-        <option value="$PROJECT_DIR$/customer_portal/api/views.py" />
-        <option value="$PROJECT_DIR$/accounts/api/urls.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0008_auto_20220708_1539.py" />
-        <option value="$PROJECT_DIR$/customer_portal/admin.py" />
         <option value="$PROJECT_DIR$/company/api/installer_api/authentication.py" />
         <option value="$PROJECT_DIR$/customer_portal/api/serializer.py" />
         <option value="$PROJECT_DIR$/company/migrations/0006_installerinvitation_company.py" />
@@ -115,39 +208,53 @@
         <option value="$PROJECT_DIR$/accounts/templates/images/welcome_installer.html" />
         <option value="$PROJECT_DIR$/accounts/templates/user_invitation.html" />
         <option value="$PROJECT_DIR$/accounts/admin.py" />
-        <option value="$PROJECT_DIR$/accounts/models.py" />
-        <option value="$PROJECT_DIR$/accounts/api/serializer.py" />
         <option value="$PROJECT_DIR$/accounts/tests.py" />
-        <option value="$PROJECT_DIR$/customer_portal/models.py" />
         <option value="$PROJECT_DIR$/customer_portal/migrations/0009_auto_20220726_1308.py" />
-        <option value="$PROJECT_DIR$/accounts/api/views.py" />
         <option value="$PROJECT_DIR$/customer_portal/tests.py" />
         <option value="$PROJECT_DIR$/../../au_countrywide-addresses-country.geojson/geojson.py" />
-        <option value="$PROJECT_DIR$/customer_portal/api/urls.py" />
-        <option value="$PROJECT_DIR$/company/api/installer_api/urls.py" />
         <option value="$PROJECT_DIR$/customer_portal/templates/send_pv_application.html" />
-        <option value="$PROJECT_DIR$/customer_portal/templates/email_attached_file.html" />
-        <option value="$PROJECT_DIR$/company/api/installer_api/views.py" />
         <option value="$PROJECT_DIR$/company/tests.py" />
         <option value="$PROJECT_DIR$/company/addressTest.py" />
-        <option value="$PROJECT_DIR$/company/api/company_api/urls.py" />
         <option value="$PROJECT_DIR$/company/migrations/0002_australiaaddressmodel.py" />
-        <option value="$PROJECT_DIR$/company/models.py" />
-        <option value="$PROJECT_DIR$/company/api/company_api/serializer.py" />
         <option value="$PROJECT_DIR$/company/admin.py" />
-        <option value="$PROJECT_DIR$/company/api/company_api/views.py" />
         <option value="$PROJECT_DIR$/DarwinSolar/oskey.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/accounts/migrations/0001_initial.py" />
+        <option value="$PROJECT_DIR$/accounts/templates/welcome.html" />
+        <option value="$PROJECT_DIR$/accounts/templates/Test_email_form.html" />
+        <option value="$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220809_1613.py" />
+        <option value="$PROJECT_DIR$/customer_portal/admin.py" />
+        <option value="$PROJECT_DIR$/accounts/templates/reset_password_email.html" />
+        <option value="$PROJECT_DIR$/company/api/company_api/serializer.py" />
+        <option value="$PROJECT_DIR$/DarwinSolar/utils.py" />
+        <option value="$PROJECT_DIR$/accounts/templates/company_invitation.html" />
+        <option value="$PROJECT_DIR$/company/models.py" />
+        <option value="$PROJECT_DIR$/customer_portal/migrations/0003_auto_20220812_1107.py" />
+        <option value="$PROJECT_DIR$/accounts/api/urls.py" />
+        <option value="$PROJECT_DIR$/accounts/api/views.py" />
+        <option value="$PROJECT_DIR$/company/api/company_api/urls.py" />
+        <option value="$PROJECT_DIR$/company/api/company_api/views.py" />
+        <option value="$PROJECT_DIR$/customer_portal/api/urls.py" />
+        <option value="$PROJECT_DIR$/accounts/models.py" />
+        <option value="$PROJECT_DIR$/accounts/api/serializer.py" />
+        <option value="$PROJECT_DIR$/accounts/templates/customer_data_saved.html" />
+        <option value="$PROJECT_DIR$/customer_portal/api/views.py" />
+        <option value="$PROJECT_DIR$/company/api/installer_api/urls.py" />
+        <option value="$PROJECT_DIR$/customer_portal/templates/email_attached_file.html" />
+        <option value="$PROJECT_DIR$/customer_portal/models.py" />
         <option value="$PROJECT_DIR$/e4sk.py" />
+        <option value="$PROJECT_DIR$/customer_portal/templates/email_accounts_order_list.html" />
+        <option value="$PROJECT_DIR$/company/api/installer_api/views.py" />
+        <option value="$PROJECT_DIR$/.ebextensions/django.config" />
         <option value="$PROJECT_DIR$/DarwinSolar/settings.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="257" />
-    <option name="y" value="150" />
-    <option name="width" value="1553" />
-    <option name="height" value="880" />
+    <option name="x" value="2856" />
+    <option name="y" value="211" />
+    <option name="width" value="340" />
+    <option name="height" value="147" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -166,6 +273,16 @@
             <path>
               <item name="DarwinSolar" type="b2602c69:ProjectViewProjectNode" />
               <item name="DarwinSolar" type="462c0819:PsiDirectoryNode" />
+              <item name=".ebextensions" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DarwinSolar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DarwinSolar" type="462c0819:PsiDirectoryNode" />
+              <item name=".elasticbeanstalk" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="DarwinSolar" type="b2602c69:ProjectViewProjectNode" />
+              <item name="DarwinSolar" type="462c0819:PsiDirectoryNode" />
               <item name="DarwinSolar" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -177,23 +294,23 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/company" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/accounts/templates/images" />
     <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar" />
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\api" />
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\templates" />
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company" />
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company\api\installer_api" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\templates\images" />
       <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company" />
       <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\templates" />
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\templates\images" />
       <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\installer_api" />
       <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\customer_portal\migrations" />
-    </key>
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company" />
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\accounts\templates" />
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company\api\installer_api" />
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\DarwinSolar" />
-      <recent name="E:\DarwinSolar\ServerProject\DsolarApi\DarwinSolar\company\api\company_api" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -338,10 +455,10 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
+    <frame x="1912" y="-8" width="1936" height="1056" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.16182299" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.13435195" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -352,7 +469,7 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
-      <window_info anchor="bottom" id="Terminal" order="8" weight="0.427157" />
+      <window_info anchor="bottom" id="Terminal" order="8" visible="true" weight="0.30877572" />
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" weight="0.32936078" />
       <window_info anchor="bottom" id="Python Console" order="10" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -361,42 +478,41 @@
     </layout>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/contrib/auth/tokens.py">
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220809_1551.py" />
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220809_1552.py" />
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220809_1610.py" />
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220809_1613.py" />
+    <entry file="file://$PROJECT_DIR$/company/migrations/0002_company_company_creator.py" />
+    <entry file="file://$PROJECT_DIR$/company/api/app/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-527">
-          <caret line="61" column="8" selection-start-line="61" selection-start-column="8" selection-end-line="61" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/api/installer_api/authentication.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="46" lean-forward="true" selection-start-line="46" selection-end-line="46" />
+        <state>
           <folding>
-            <element signature="e#46#153#0" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/core/validators.py">
+    <entry file="file://$PROJECT_DIR$/customer_portal/admin.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="32">
-          <caret line="255" selection-start-line="255" selection-end-line="255" />
+        <state relative-caret-position="308">
+          <caret line="14" column="36" selection-start-line="14" selection-start-column="36" selection-end-line="14" selection-end-column="36" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company/migrations/0006_installerinvitation_company.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/django/utils/http.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/rest_framework/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1868">
-          <caret line="182" column="4" selection-start-line="182" selection-start-column="4" selection-end-line="182" selection-end-column="4" />
+        <state relative-caret-position="1333">
+          <caret line="216" column="24" lean-forward="true" selection-start-line="216" selection-start-column="24" selection-end-line="216" selection-end-column="24" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/welcome.html">
+    <entry file="file://$PROJECT_DIR$/accounts/templates/user_invitation.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2882">
-          <caret line="7" column="37" lean-forward="true" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        <state relative-caret-position="374">
+          <caret line="17" column="27" lean-forward="true" selection-end-line="306" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
@@ -418,52 +534,14 @@
             <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/api/installer_api/serializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="237">
-          <caret line="38" selection-start-line="38" selection-end-line="38" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/accounts/templates/reset_password_email.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3168">
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#center#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/templates/user_invitation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="368">
-          <caret line="179" column="341" selection-start-line="179" selection-start-column="341" selection-end-line="179" selection-end-column="341" />
+        <state relative-caret-position="281">
+          <caret line="175" column="206" selection-start-line="175" selection-start-column="206" selection-end-line="175" selection-end-column="206" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
@@ -493,6 +571,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="153" column="203" selection-start-line="153" selection-start-column="199" selection-end-line="153" selection-end-column="203" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/Test_email_form.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="281">
+          <caret line="165" column="418" selection-start-line="165" selection-start-column="414" selection-end-line="165" selection-end-column="418" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
@@ -518,110 +603,50 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/admin.py">
+    <entry file="file://$PROJECT_DIR$/accounts/templates/nmi_request.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="35" selection-start-line="7" selection-start-column="35" selection-end-line="7" selection-end-column="35" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../eb-virt/Lib/site-packages/rest_framework/fields.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="779">
-          <caret line="94" selection-start-line="94" selection-end-line="94" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/check_files_uploaded/file_checker.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2032">
-          <caret line="99" column="4" selection-start-line="99" selection-start-column="4" selection-end-line="99" selection-end-column="4" />
-          <folding>
-            <element signature="e#0#65#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/api/serializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="87" column="41" selection-start-line="87" selection-start-column="41" selection-end-line="87" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#38#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="64" selection-start-line="4" selection-start-column="9" selection-end-line="4" selection-end-column="64" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="453">
-          <caret line="110" column="19" selection-start-line="110" selection-start-column="4" selection-end-line="110" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-            <element signature="e#1875#3364#0" />
-            <element signature="e#7287#7341#1" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0009_auto_20220726_1308.py" />
-    <entry file="file://$PROJECT_DIR$/customer_portal/tests.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../au_countrywide-addresses-country.geojson/au_countrywide-addresses-country.geojson">
-      <provider selected="true" editor-type-id="LargeFileEditor">
-        <state relative-caret-position="-3300" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/address.py" />
-    <entry file="file://$PROJECT_DIR$/../../../DC Hub/Main/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="56" column="4" selection-start-line="56" selection-start-column="4" selection-end-line="56" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/../../au_countrywide-addresses-country.geojson/geojson.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="7" column="12" lean-forward="true" selection-start-line="7" selection-start-column="12" selection-end-line="7" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/migrations/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/accounts/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2730">
-          <caret line="202" lean-forward="true" selection-start-line="202" selection-end-line="207" selection-end-column="61" />
-          <folding>
-            <element signature="e#0#16#0" expanded="true" />
-            <element signature="e#1428#3458#0" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/templates/send_pv_application.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="172" column="343" selection-start-line="172" selection-start-column="343" selection-end-line="172" selection-end-column="343" />
+        <state relative-caret-position="369">
+          <caret line="168" column="54" selection-start-line="168" selection-start-column="54" selection-end-line="168" selection-end-column="54" />
           <folding>
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#center#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/welcome.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="164" column="59" selection-start-line="164" selection-start-column="59" selection-end-line="164" selection-end-column="59" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#center#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
@@ -639,35 +664,129 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DarwinSolar/utils.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="14" column="4" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="4" />
+        <state relative-caret-position="506">
+          <caret line="23" selection-start-line="23" selection-end-line="23" />
           <folding>
             <element signature="e#23#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/templates/send_coc_attachment.html">
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_alter_jobdetails_finalized_by.py" />
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0003_auto_20220812_1107.py" />
+    <entry file="file://$PROJECT_DIR$/company/api/company_api/serializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="132">
+          <caret line="21" column="17" selection-start-line="21" selection-start-column="17" selection-end-line="21" selection-end-column="98" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220812_1111.py" />
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0002_auto_20220812_1128.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/migrations/0001_initial.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="330">
-          <caret line="15" column="17" lean-forward="true" selection-end-line="300" />
+          <caret line="53" column="24" selection-start-line="53" selection-start-column="24" selection-end-line="53" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/rest_framework/fields.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="1870" column="8" selection-start-line="1870" selection-start-column="8" selection-end-line="1870" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company/api/company_api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="330">
+          <caret line="15" column="71" selection-start-line="15" selection-start-column="71" selection-end-line="15" selection-end-column="71" />
           <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="e#0#28#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company/api/installer_api/authentication.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="6" selection-start-line="7" selection-start-column="6" selection-end-line="7" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/rest_framework/permissions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1936">
+          <caret line="130" column="6" selection-start-line="130" selection-start-column="6" selection-end-line="130" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Programs/Python/Python39/Lib/site-packages/rest_framework/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="393" column="32" selection-start-line="393" selection-start-column="32" selection-end-line="393" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="440">
+          <caret line="27" column="4" selection-start-line="27" selection-start-column="4" selection-end-line="27" selection-end-column="4" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="462">
+          <caret line="117" column="58" selection-start-line="117" selection-start-column="58" selection-end-line="117" selection-end-column="58" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <element signature="e#1875#3364#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/api/serializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-330">
+          <caret line="73" column="71" selection-start-line="73" selection-start-column="71" selection-end-line="73" selection-end-column="71" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+            <element signature="e#304#636#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company/api/company_api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="320">
+          <caret line="304" column="38" selection-start-line="304" selection-start-column="38" selection-end-line="304" selection-end-column="38" />
+          <folding>
+            <element signature="e#0#66#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="34" column="18" selection-start-line="34" selection-start-column="18" selection-end-line="34" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#16#0" expanded="true" />
+            <element signature="e#6237#6283#0" />
+            <element signature="e#11243#13030#0" />
+            <element signature="e#13091#13295#0" />
+            <element signature="e#13352#14347#0" />
+            <element signature="e#14389#15608#0" />
+            <element signature="e#15650#16424#0" />
           </folding>
         </state>
       </provider>
@@ -675,65 +794,139 @@
     <entry file="file://$PROJECT_DIR$/accounts/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66">
-          <caret line="3" column="76" selection-start-line="3" selection-start-column="76" selection-end-line="3" selection-end-column="76" />
+          <caret line="3" column="56" selection-start-line="3" selection-start-column="56" selection-end-line="3" selection-end-column="56" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/models.py">
+    <entry file="file://$PROJECT_DIR$/customer_portal/urls.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company/api/installer_api/serializer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="27" column="23" selection-start-line="27" selection-start-column="23" selection-end-line="27" selection-end-column="23" />
+        <state relative-caret-position="154">
+          <caret line="7" column="13" selection-start-line="7" selection-start-column="10" selection-end-line="7" selection-end-column="13" />
           <folding>
-            <element signature="e#0#9#0" expanded="true" />
+            <element signature="e#0#66#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/api/serializer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="14" column="6" selection-start-line="14" selection-start-column="6" selection-end-line="14" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#38#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="299">
+          <caret line="57" column="6" selection-start-line="57" selection-start-column="6" selection-end-line="57" selection-end-column="6" />
+          <folding>
+            <element signature="e#0#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/templates/file_upload_email.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-3564">
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#center#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/company_invitation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2307">
+          <caret line="168" lean-forward="true" selection-start-line="168" selection-end-line="168" />
+          <folding>
+            <element signature="n#style#0;n#a#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/accounts/templates/customer_data_saved.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="422">
+          <caret line="161" column="84" lean-forward="true" selection-start-line="159" selection-start-column="10" selection-end-line="161" selection-end-column="84" />
+          <folding>
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#p#2;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#p#2;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#center#0;n#v:roundrect#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#a#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#span#0;n#a#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
+            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer_portal/templates/email_attached_file.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="12" column="26" selection-end-line="300" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/customer_portal/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="101" selection-start-line="11" selection-start-column="101" selection-end-line="11" selection-end-column="101" />
+        <state relative-caret-position="132">
+          <caret line="10" column="48" selection-start-line="10" selection-start-column="48" selection-end-line="10" selection-end-column="48" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.platform/nginx/conf.d/proxy.conf">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.elasticbeanstalk/config.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/templates/email_attached_file.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="37">
-          <caret line="148" column="9" selection-start-line="148" selection-start-column="9" selection-end-line="148" selection-end-column="9" />
-          <folding>
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#tr#0;n#table#0;n#td#0;n#tr#0;n#table#0;n#!!top" expanded="true" />
-            <element signature="n#style#0;n#td#0;n#!!top" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/company/api/installer_api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="286">
-          <caret line="13" column="35" selection-start-line="13" selection-start-column="35" selection-end-line="13" selection-end-column="35" />
+        <state relative-caret-position="374">
+          <caret line="21" column="45" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
           <folding>
             <element signature="e#0#28#0" expanded="true" />
           </folding>
@@ -742,129 +935,59 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/company/api/installer_api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1446">
-          <caret line="470" selection-start-line="470" selection-end-line="470" />
+        <state relative-caret-position="11440">
+          <caret line="550" column="93" selection-start-line="550" selection-start-column="93" selection-end-line="550" selection-end-column="93" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Roaming/Python/Python39/site-packages/requests/__init__.py">
+    <entry file="file://$PROJECT_DIR$/DarwinSolar/wsgi.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer_portal/api/views.py">
+    <entry file="file://$PROJECT_DIR$/customer_portal/templates/email_accounts_order_list.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="172" column="48" selection-start-line="172" selection-start-column="48" selection-end-line="172" selection-end-column="68" />
+        <state relative-caret-position="3498">
+          <caret line="159" selection-start-line="159" selection-end-line="159" />
           <folding>
-            <element signature="e#0#29#0" expanded="true" />
-            <element signature="e#5257#5535#0" />
-            <element signature="e#7078#7603#0" />
+            <element signature="n#style#0;n#p#3;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#2;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#div#0;n#td#0;n#tr#0;n#tbody#0;n#table#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company/addressTest.py">
+    <entry file="file://$PROJECT_DIR$/customer_portal/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="680">
-          <caret line="42" column="31" selection-start-line="3" selection-end-line="42" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#11#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="1606">
+          <caret line="82" column="22" lean-forward="true" selection-start-line="82" selection-start-column="22" selection-end-line="82" selection-end-column="22" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company/migrations/0003_auto_20220802_1643.py" />
-    <entry file="file://$PROJECT_DIR$/company/migrations/0001_initial.py">
+    <entry file="file://$PROJECT_DIR$/.ebextensions/django.config">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-792" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="914">
-          <caret line="50" selection-start-line="50" selection-end-line="50" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="44">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company/migrations/0002_australiaaddressmodel.py">
+    <entry file="file://$PROJECT_DIR$/requirements.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-330" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1078">
-          <caret line="56" column="47" selection-start-line="56" selection-start-column="47" selection-end-line="56" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="154">
-          <caret line="11" column="19" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/api/company_api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8866">
-          <caret line="423" column="95" selection-start-line="423" selection-start-column="95" selection-end-line="423" selection-end-column="95" />
-          <folding>
-            <element signature="e#0#66#0" expanded="true" />
-            <marker date="1659483479975" expanded="true" signature="4154:4203" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/api/company_api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="19" column="70" selection-start-line="19" selection-start-column="70" selection-end-line="19" selection-end-column="70" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company/api/company_api/serializer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="88">
-          <caret line="4" column="48" selection-start-line="4" selection-start-column="48" selection-end-line="4" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DarwinSolar/oskey.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
+        <state relative-caret-position="462">
+          <caret line="21" column="14" lean-forward="true" selection-start-line="21" selection-start-column="14" selection-end-line="21" selection-end-column="14" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/e4sk.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="440">
-          <caret line="20" column="65" selection-start-line="20" selection-start-column="65" selection-end-line="20" selection-end-column="65" />
+        <state relative-caret-position="198">
+          <caret line="9" column="27" selection-start-line="9" selection-start-column="27" selection-end-line="9" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/DarwinSolar/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="227" lean-forward="true" selection-start-line="227" selection-end-line="227" />
+        <state relative-caret-position="44">
+          <caret line="16" lean-forward="true" selection-start-line="16" selection-end-line="16" />
           <folding>
             <element signature="e#309#318#0" expanded="true" />
           </folding>

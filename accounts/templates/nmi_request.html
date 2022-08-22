@@ -151,27 +151,36 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 30px 30px 40px;font-family:arial,helvetica,sans-serif;" align="left">
 
   <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Crimson Text', serif; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 22px; line-height: 30.8px;">Dear Sir/Madam,</span></strong></span></p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Crimson Text', serif; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 22px; line-height: 30.8px;">Dear {{customer}}!</span></strong></span></p>
 <p style="font-size: 14px; line-height: 100%;">&nbsp;</p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Please see attached {{file_type}} for: {{job.customer_id.first_name}} {{job.customer_id.last_name}} of <strong><br>
-  {{job.street}}, {{job.city}}, {{job.state}} {{job.postcode}}</strong>
-   ! </span></p>
-      <p style="font-size: 14px; line-height: 140%;">
-        <span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">
-          Please process the requirements and let us know if there are any issues that we can resolve.
-
-      </span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Welcome to Darwin Solar portal. Thank you again for choosing <strong>Darwin Solar</strong>. We are thrilled to see you here! </span></p>
+      <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Your Darwin Solar account has been created with following details. <br>Email: {{customer_email}}<br>Password: darwinsolar@2022</span></p>
+      <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Please click the link below to login and add NMI number BEFORE your installation. </span></p>
     <table id="u_content_button_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 40px;font-family:arial,helvetica,sans-serif;" align="left">
+
+<div class="v-text-align" align="left">
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:arial,helvetica,sans-serif;"><tr><td class="v-text-align" style="font-family:arial,helvetica,sans-serif;" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="{{pw_reset_link}}" style="height:47px; v-text-anchor:middle; width:456px;" arcsize="6.5%" strokecolor="#ced4d9" strokeweight="3px" fillcolor="#91a5e2"><w:anchorlock/><center style="color:#000000;font-family:arial,helvetica,sans-serif;"><![endif]-->
+    <a href="https://www.darwin.solar/" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #000000; background-color: #91a5e2; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:100%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #ced4d9; border-top-style: solid; border-top-width: 3px; border-left-color: #ced4d9; border-left-style: solid; border-left-width: 3px; border-right-color: #ced4d9; border-right-style: solid; border-right-width: 3px; border-bottom-color: #ced4d9; border-bottom-style: solid; border-bottom-width: 3px;">
+      <span class="v-padding" style="display:block;padding:15px 40px;line-height:120%;"><span style="font-size: 14px; line-height: 16.8px;">LOGIN</span></span>
+    </a>
+  <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
+</div>
 
       </td>
     </tr>
   </tbody>
 </table>
 
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 22px; line-height: 30.8px;"><strong><span style="line-height: 30.8px; font-family: 'Crimson Text', serif; font-size: 22px;">Thanks.</span></strong></span><br /><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">Admin<br/> {{job.company}}</span></p>
+<p style="font-size: 14px; line-height: 100%;">&nbsp;</p>
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">We strongly recommend to <strong>change password</strong> after you login.</span></p>
+  </div>
+  <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">Feel free to reach out to us with any questions.</span></p>
+<p style="font-size: 14px; line-height: 140%;">&nbsp;</p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 22px; line-height: 30.8px;"><strong><span style="line-height: 30.8px; font-family: 'Crimson Text', serif; font-size: 22px;">Thanks.</span></strong></span><br /><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">Admin<br/> Darwin Solar</span></p>
   </div>
       </td>
     </tr>

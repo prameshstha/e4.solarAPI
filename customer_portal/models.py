@@ -1,4 +1,3 @@
-import os
 import random
 
 from django.db import models
@@ -55,21 +54,43 @@ class JobDetails(models.Model):
     no_of_battery = models.CharField(max_length=120, blank=True)
     hotwater = models.CharField(max_length=120, blank=True)
     installation_date = models.CharField(max_length=120, blank=True)
-    # back_panel = models.FileField(upload_to=upload_file_path, blank=True)
-    # front_of_property = modes.FileField(upload_to=upload_file_path, blank=True)
-    # switch_board = models.FileField(upload_to=upload_file_path, blank=True)
-    # installer_image = models.FileField(upload_to=upload_file_path, blank=True)
-    # electrician = models.CharField(max_length=120, blank=True)
-    # installer = models.CharField(max_length=120, blank=True)
-    # designer = models.CharField(max_length=120, blank=True)
+    back_panel = models.FileField(upload_to=upload_file_path, blank=True)
+    front_of_property = models.FileField(upload_to=upload_file_path, blank=True)
+    switch_board = models.FileField(upload_to=upload_file_path, blank=True)
+    installer_image = models.FileField(upload_to=upload_file_path, blank=True)
+    electrician = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='job_electrician', blank=True, null=True)
+    installer = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='job_installer', blank=True, null=True)
+    designer = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='job_designer', blank=True, null=True)
     nmi = models.CharField(max_length=120, blank=True)
     property_type = models.CharField(max_length=120, blank=True)  # single or multistory
     system_type = models.CharField(max_length=120, blank=True)  # single or three phase
     connection_type = models.CharField(max_length=120, blank=True)  # new, existing(Replacing, Adding)
+    system_cost = models.CharField(max_length=255, blank=True, null=True)
+    is_financed = models.BooleanField(default=False)
+    deposit_paid = models.BooleanField(default=False)
+    deposit_amount = models.CharField(max_length=120, blank=True, null=True)
+    total_amount_paid = models.BooleanField(default=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    quote_sent = models.BooleanField(default=False)
+    invoice_sent = models.BooleanField(default=False)
+    pv_applied = models.BooleanField(default=False)
+    finalized_by = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='job_finalized_by', blank=True, null=True)
+    is_processed = models.BooleanField(default=False)
+    processed_by = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='job_processed_by', blank=True, null=True)
     is_open = models.BooleanField(default=True)
 
     def __str__(self):
         return str(self.job_number)
+
+
+class JobEditHistory(models.Model):
+    edited_by = models.ForeignKey(InstallerUser, on_delete=models.PROTECT, related_name='edited_by')
+    edited_date = models.DateTimeField(auto_now=True)
+    edited_model = models.CharField(max_length=255, blank=True, null=True)
+    edited_content_old = models.CharField(max_length=255, blank=True, null=True)
+    edited_content_new = models.CharField(max_length=255, blank=True, null=True)
+    edited_action = models.CharField(max_length=255, blank=True, null=True)
 
 
 class FileType(models.Model):
@@ -80,6 +101,13 @@ class FileType(models.Model):
 
     def __str__(self):
         return str(self.file_type)
+
+
+class FileFieldSetting(models.Model):
+    file_type = models.ForeignKey(FileType, on_delete=models.CASCADE, related_name='file_type_field')
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_file_field')
+    file_type_field = models.CharField(max_length=255)
+    uploaded_form_field = models.CharField(max_length=255)
 
 
 def upload_common_file_path(instance, filename):

@@ -1,5 +1,6 @@
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.core.mail import EmailMultiAlternatives
+from django.db import transaction
 from django.template.loader import render_to_string
 from django.utils.encoding import force_bytes
 from django.utils.http import urlsafe_base64_encode, urlsafe_base64_decode
@@ -11,20 +12,125 @@ from rest_framework.views import APIView
 
 from accounts.api.serializer import AllCustomUserSerializer
 
-from DarwinSolar.utils import EmailThread
+from DarwinSolar.utils import EmailThread, my_domain
 from accounts.models import InstallerUser, InstallerToken
 from company.api.app.views import del_s3_file
 from company.api.installer_api.authentication import InstallerTokenAuthentication
 from company.api.company_api.serializer import CompanySerializer, AddressSerializer, AustraliaAddressSerializer
 from company.api.installer_api.serializer import InstallerUserSerializer, RegistrationInstallerUserSerializer
+from company.api.installer_api.views import Login
 from company.models import Company, InstallerInvitation, AddressModel, AustraliaAddressModel
 from customer_portal.models import JobDetails
 
 
-class CreateListCompany(generics.ListCreateAPIView):
-    authentication_classes = [InstallerTokenAuthentication]
-    queryset = Company.objects.all()
-    serializer_class = CompanySerializer
+class RegisterCompany(APIView):
+
+    def post(self, request):
+        print(request.data)
+        # installer = InstallerUser.objects.get(email=request.data.get('email'))
+        # company = Company.objects.get(company_name='Darwin Solar')
+        # sendComapayCreatedEmail(installer, company)
+
+        installer_serializer = InstallerUserSerializer(data=request.data)
+        print(installer_serializer.is_valid(), installer_serializer.errors)
+
+        try:
+            with transaction.atomic():  # for roll back transaction
+                if installer_serializer.is_valid():
+                    installer = installer_serializer.save()
+                    if installer:
+                        request.data['company_creator'] = installer.id
+                        print(request.data)
+                        company_serializer = CompanySerializer(data=request.data)
+                        print(company_serializer.is_valid(), company_serializer.errors)
+                        if company_serializer.is_valid():
+                            company = company_serializer.save()
+                            print(company)
+                            company.company_users.add(installer)
+                            print('installer')
+                            company.company_admin.add(installer)
+                            print(installer)
+                            # company.save()
+                            if company:
+                                sendComapayCreatedEmail(installer, company)
+                                return Response({'Error': 'Successfully created!!!'}, 200)
+                            return Response({'Error': 'Company not created!!!'}, 409)
+                        return Response({'Error': 'Not valid company data!!!'}, 409)
+                    return Response({'Error': 'User not created!!!'}, 409)
+                return Response({'Error': 'User already exists or not valid User data!!!'}, 409)
+        except Exception as e:
+            print('eee', e)
+            return Response({'Error': 'Something went wrong'}, 409)
+
+        # view = Login.post(self, request)
+        # if view.status_code == 404:
+        #     return Response({'Error': 'Please try again!'}, 409)
+        # return view
+
+
+def sendComapayCreatedEmail(user, company):
+    encoded_email = urlsafe_base64_encode(force_bytes(user.email))
+    encoded_pk = urlsafe_base64_encode(force_bytes(company.pk))
+    token = PasswordResetTokenGenerator().make_token(user)
+    print('avx', token)
+    link = "activate-account-company?token=" + token + '&compy=' + encoded_pk + '&em=' + encoded_email
+    activate_url = my_domain + link
+    print(activate_url)
+
+    name = user.first_name + ' ' + user.last_name
+    if user.first_name == '':
+        name = user.email
+
+    merge_data = {
+        'user': user,
+        'name': name,
+        'company': company.company_name,
+        'activate_url': activate_url  # change in production level
+    }
+
+    email_subject = "Activate your account and {company} account.".format(company=str(company))
+    email_html_body = render_to_string("company_invitation.html", merge_data)
+    from_email = "reception@darwinsolar.com.au"
+    to_email = [user.email]
+    send_email = EmailMultiAlternatives(
+        email_subject,
+        email_html_body,
+        from_email,
+        to_email,
+    )
+    send_email.attach_alternative(email_html_body, "text/html")
+    EmailThread(send_email).start()  # to send email faster
+
+
+class ActivateCompany(APIView):
+    def post(self, request):
+        print(request.data)
+        token = request.data.get('token')
+        encoded_company = request.data.get('compy')
+        encoded_email = request.data.get('em')
+        resend = request.data.get('resend')
+
+        email = urlsafe_base64_decode(encoded_email).decode()
+        company_id = urlsafe_base64_decode(encoded_company).decode()
+        user = InstallerUser.objects.get(email=email)
+        company = Company.objects.get(id=company_id)
+        if resend:  # to resend activation email only.
+            sendComapayCreatedEmail(user, company)
+            return Response('Activation link sent. Please check your email.')
+
+        if token is None or encoded_company is None or encoded_email is None:
+            return Response('Broken activation link!!!', 401)
+
+        if not PasswordResetTokenGenerator().check_token(user, token):
+            return Response('The activation link is invalid!!!', 401)
+        if user.is_active and company.is_active:
+            return Response('Account already activated. Thank you!!!', 200)
+
+        user.is_active = True
+        user.save()
+        company.is_active = True
+        company.save()
+        return Response('Account activation successful!!!', 200)
 
 
 class CompanyEditDeleteView(APIView):
@@ -187,7 +293,24 @@ class CompanyCustomerListView(generics.ListCreateAPIView):
 
 
 class CompanyUserListView(generics.ListCreateAPIView):
-    authentication_classes = [InstallerTokenAuthentication]
+    # permission_classes = [IsAuthenticated]
+    # authentication_classes = [InstallerTokenAuthentication]
+    # def get_authenticators(self):
+    #     print('authenticator', self.request, self.kwargs)
+    #     is_installer = self.kwargs.get('is_installer')
+    #     print(bool(is_installer))
+    #     if bool(is_installer):
+    #         return [InstallerTokenAuthentication]
+    #     else:
+    #         return [IsAuthenticated]
+    # def get_permissions(self):
+    #     print ('requestssss', self.request.data, self.kwargs)
+    #     is_installer = self.kwargs.get('is_installer')
+    #     print(bool(is_installer))
+    #     if not bool(is_installer):
+    #         return [IsAuthenticated]
+    #     else:
+    #         return [InstallerTokenAuthentication]
 
     def get_queryset(self):
         company_id = self.kwargs['company_id']
@@ -221,14 +344,13 @@ class AddCompanyUser(APIView):
                 # write code to add user in the company
                 company.company_users.add(user)
                 data = 'New user added'
+                send_welcome_email(user, company)
                 return Response(data, 200)
 
         except InstallerUser.DoesNotExist:
             # 'This email address does not have account in this app. Do you want to invite them?'
             data = 'This email address does not have an account. Email invitation sent ' + user_email
             # send invitation email to the user
-            domain = 'https://e4.solar/register-new-user'
-            domain = 'http://localhost:3000/register-new-user'
 
             try:
                 tok = InstallerInvitation.objects.get(email=user_email, company=company)
@@ -239,8 +361,8 @@ class AddCompanyUser(APIView):
                 encoded_email = urlsafe_base64_encode(force_bytes(user_email))
                 encoded_pk = urlsafe_base64_encode(force_bytes(company.pk))
                 token = InstallerInvitation.objects.create(email=user_email, company=company)
-                link = "?token=" + token.key + '&compy=' + encoded_pk + '&em=' + encoded_email
-                register_url = domain+link
+                link = "register-new-user?token=" + token.key + '&compy=' + encoded_pk + '&em=' + encoded_email
+                register_url = my_domain+link
                 print(register_url)
 
                 merge_data = {
@@ -299,36 +421,15 @@ class RegisterUserInvitation(APIView):
                     user = serializer.save()
                     print(user)
                     token = InstallerToken.objects.get_or_create(user=user)
-                    # user created email
+                    # add this user to company.company_users
 
-                    link = "e4.solar"
+                    # user created email
                     # print(sender, "sender", instance, "instance", reset_password_token, "reset_password_token",
                     #       reset_password_token.user.email)
-                    print(link)
+
                     print(user.first_name, user.email)
-                    customer = user.first_name
-                    if user.first_name == '':
-                        customer = user.email
-                    merge_data = {
-                        'customer': customer,
-                        'customer_email': user.email,
-                        'company_name': company.company_name,
-                        'link': link,  # change in production level
-                    }
+                    send_welcome_email(user, company)
 
-                    email_subject = "Welcome to " + company.company_name
-                    email_html_body = render_to_string("welcome_installer.html", merge_data)
-                    from_email = "reception@darwinsolar.com.au"
-                    to_email = [user.email]
-                    send_email = EmailMultiAlternatives(
-                        email_subject,
-                        email_html_body,
-                        from_email,
-                        to_email,
-
-                    )
-                    send_email.attach_alternative(email_html_body, "text/html")
-                    EmailThread(send_email).start()  # to send email faster
                     data = 'User successfully created!'
                     return Response(data, 200)
 
@@ -339,6 +440,32 @@ class RegisterUserInvitation(APIView):
             print(str(serializer.errors))
 
         return Response('Something is wrong', 201)
+
+
+def send_welcome_email(user, company):
+    customer = user.first_name
+    if user.first_name == '':
+        customer = user.email
+    merge_data = {
+        'customer': customer,
+        'customer_email': user.email,
+        'company_name': company.company_name,
+        'link': my_domain,  # change in production level
+    }
+
+    email_subject = "Welcome to " + company.company_name
+    email_html_body = render_to_string("welcome_installer.html", merge_data)
+    from_email = "reception@darwinsolar.com.au"
+    to_email = [user.email]
+    send_email = EmailMultiAlternatives(
+        email_subject,
+        email_html_body,
+        from_email,
+        to_email,
+
+    )
+    send_email.attach_alternative(email_html_body, "text/html")
+    EmailThread(send_email).start()   # to send email faster
 
 
 class ChangeAdmin(APIView):
@@ -381,6 +508,14 @@ class ChangeAdmin(APIView):
                 return Response('Removed admin', 200)
             else:
                 return Response('This admin is already removed.', 201)
+
+
+class SearchAddressView(APIView):
+    authentication_classes = [InstallerTokenAuthentication]
+
+    def post(self, request):
+        print(request.data)
+        Response('tested', 200)
 
 
 class InsertInitialAddress(APIView):

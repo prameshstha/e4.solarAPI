@@ -1,4 +1,5 @@
 import os
+import re
 
 from django.contrib.auth import logout
 from django.contrib.auth.hashers import check_password
@@ -13,7 +14,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 import requests as apiRequest
-from DarwinSolar.utils import EmailThread, get_filename_ext
+from DarwinSolar.utils import EmailThread, get_filename_ext, my_domain
 from accounts.api.serializer import AllCustomUserSerializer, CustomUserSerializer
 from company.api.app.views import del_s3_file
 from company.api.company_api.serializer import CompanySerializer
@@ -370,9 +371,9 @@ class AddCustomerFiles(APIView):
                 full_file_path = f'https://{AWS_S3_CUSTOM_DOMAIN}/{data["filePath"]}'
                 data['full_file_path'] = full_file_path
                 print('uploaded file email', file_type.to_email)
-                if file_type.to_email:
-                    send_email_about_files(file_type.to_email, full_file_path, file_type.file_type, customer_id, f_name,
-                                           job, ext)
+                # if file_type.to_email:
+                #     send_email_about_files(file_type.to_email, full_file_path, file_type.file_type, customer_id, f_name,
+                #                            job, ext)
                 # if file_type == 'COC' or 'Power and Water':
                 #     send_email_about_files(full_file_path, file_type.file_type, customer_id, f_name, job, ext)
                 # end send email to respective parties
@@ -408,10 +409,14 @@ class PvApplicationView(APIView):
         for j in commonfiles:
             list_files['common_file'] = CommonCustomerFile.objects.get(id=j, company=company_id)
             email_common_files.append(list_files.copy())
-
-        pv_application_email(email_files, email_common_files, customer, company, job)
-        # print('outside loop', email_common_files)
-        return Response('test ', 200)
+        try:
+            pv_application_email(email_files, email_common_files, customer, company, job)
+            job.pv_applied = True
+            customer.save()
+            return Response('PV Application sent. ', 200)
+        except Exception as e:
+            print('Error sending email here =>', e)
+            return Response(e, 201)
 
 
 def pv_application_email(email_file, email_common_files, customer, company, job):
@@ -467,10 +472,121 @@ def pv_application_email(email_file, email_common_files, customer, company, job)
         EmailThread(send_email).start()  # to send email faster
     except Exception as e:
         print(e)
-    pass
 
 
-def send_email_about_files(to_email, path, file_type, customer_id, file_name, job, ext):
+regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
+# Define a function for
+# for validating an Email
+
+
+def check_email(email, customer_email):
+    # pass the regular expression
+    # and the string into the fullmatch() method
+    for e in email:
+
+        if re.fullmatch(regex, e.replace(' ', '')):
+            print(e, "Valid Email")
+        else:
+            print(e, "Invalid Email")
+            email.remove(e)
+            email.append(customer_email)
+    return email
+
+
+def send_email_with_files_to_all(company, user, job, customer, customer_files):
+    #  temporary solution for sending email for beta testing for Darwin Solar. 07/07/2022
+    # print(company, user, job, customer, customer_files, file_types)
+    merge_data = {
+        'company': company,
+        'customer': customer,
+        # 'to_email': to_email,
+        'job': job,
+    }
+    from_email = user.email
+    print('form email', from_email)
+    for a in customer_files:
+        file_type = a.file_type.file_type
+        email = a.file_type.to_email.split(",")
+        to_email = check_email(email, customer.email)
+        merge_data = {
+            'company': company,
+            'customer': customer,
+            'file_type': a.file_type.file_type,
+            # 'to_email': to_email,
+            'job': job,
+        }
+        try:
+            email_subject = f"{file_type} file of {job.customer_id.first_name} {job.customer_id.last_name}"
+            email_html_body = render_to_string(
+                "email_attached_file.html", merge_data)
+            from_email = from_email  # change form email according to company settings 07/07/2022
+            to_email = to_email
+            send_email = EmailMultiAlternatives(
+                email_subject,
+                email_html_body,
+                from_email,
+                to_email,
+                [user.email],
+            )
+
+            full_file_path = f"https://{AWS_S3_CUSTOM_DOMAIN}/{a.file}"
+            download = apiRequest.get(full_file_path)
+            file_name, ext = get_filename_ext(str(a.file))
+            send_email.attach(a.file_name+ext, download.content)  # attach file form s3
+            # send_email.attach_alternative(email_html_body, "text/html")
+            # EmailThread(send_email).start()  # to send email faster
+
+            job.is_processed = True
+            job.processed_by = user
+            job.save()
+
+        except Exception as e:
+            print(e)
+    # send email to accounts for ordering stock
+    try:
+        #############################
+        email_accounts_html_body = render_to_string(
+            "email_accounts_order_list.html", merge_data)
+        from_email = from_email  # change form email according to company settings 07/07/2022
+        send_email_accounts = EmailMultiAlternatives(
+            f"Order list for {job.job_number}",
+            email_accounts_html_body,
+            from_email,
+            ['pramesh@darwinsolar.com.au'],
+            # [user.email],
+        )
+        send_email_accounts.attach_alternative(email_accounts_html_body, "text/html")
+        EmailThread(send_email_accounts).start()  # to send email faster
+
+        print('email sent')
+    except Exception as er:
+        print('ee', er)
+        template = "An exception of type {0} occurred. Arguments:\n{1!r}"
+        print('type is:', er.__class__.__name__)
+
+
+class EmailDocuments(APIView):
+    authentication_classes = [InstallerTokenAuthentication]
+
+    def post(self, request):
+        customer_id = request.data.get('customer_id')
+        company_id = request.data.get('company')
+        user_id = request.data.get('user')
+        job_number = request.data.get('job_id')
+        # file_types = FileType.objects.filter(company=company_id)
+        company = Company.objects.get(id=company_id)
+        user = InstallerUser.objects.get(id=user_id)
+        job = JobDetails.objects.get(job_number=job_number)
+        customer = CustomUser.objects.get(id=customer_id)
+        customer_files = CustomerFiles.objects.filter(customer_id=customer_id)
+        send_email_with_files_to_all(company, user, job, customer, customer_files)
+
+        # print(file_types, customer_files)
+        return Response('Email sent', 200)
+
+
+def send_email_about_files(to_email, path, file_type, customer_id, file_name, job):
     #  temporary solution for sending email for beta testing for Darwin Solar. 07/07/2022
     print(to_email, path, file_type, customer_id)
     merge_data = {
@@ -493,7 +609,6 @@ def send_email_about_files(to_email, path, file_type, customer_id, file_name, jo
         )
         download = apiRequest.get(path)
         # file_name, ext = get_filename_ext(str(a['customer_file'].file))
-        print()
         send_email.attach(file_name, download.content)  # attach file form s3
         send_email.attach_alternative(email_html_body, "text/html")
         EmailThread(send_email).start()  # to send email faster
@@ -627,7 +742,7 @@ class Login(APIView):
 #             # email user with email and password
 #             # ask user to change password
 #
-#             link = "darwin.solar"
+#             link = my_domain
 #             # print(sender, "sender", instance, "instance", reset_password_token, "reset_password_token",
 #             #       reset_password_token.user.email)
 #             print(link)
@@ -732,11 +847,10 @@ class InstallerPasswordReset(generics.UpdateAPIView):
             if user.first_name == '':
                 customer = user.email
             print(customer)
-            pw_reset_link = 'http://localhost:3000/' + link
-            # pw_reset_link = 'e4.solar' + link  # change in production level
+            pw_reset_link = my_domain + link
             merge_data = {
                 'customer': customer,
-                'pw_reset_link': pw_reset_link  # change in production level
+                'pw_reset_link': pw_reset_link
             }
             email_subject = "Password Reset for {title}".format(title="Darwin Solar Portal")
             email_html_body = render_to_string("reset_password_email.html", merge_data)
@@ -779,7 +893,12 @@ class ResetPasswordAPI(generics.GenericAPIView):
         """
         print('rpa', request.data)
         serializer = self.serializer_class(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        if serializer.is_valid():
+            print(serializer.errors)
+        else:
+            print(serializer.errors)
+            return Response(
+                {"message": "Invalid token!"}, 400)
         return Response(
             {"message": "Password reset complete"},
             status=status.HTTP_200_OK,

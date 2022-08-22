@@ -37,6 +37,7 @@ class Company(models.Model):
     is_active = models.BooleanField(default=False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    company_creator = models.ForeignKey(InstallerUser, on_delete=models.CASCADE, related_name='company_creator')
 
     def __str__(self):
         return str(self.company_name)

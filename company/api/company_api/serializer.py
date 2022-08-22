@@ -19,7 +19,7 @@ class CompanySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Company
-        fields = ['company_name', 'company_logo', 'company_phone', 'is_active']
+        fields = ['company_name', 'company_logo', 'company_phone', 'is_active', 'company_creator']
 
     # def get_company_add(self, instance):
     #     # print(instance, instance.id, instance.company_address)

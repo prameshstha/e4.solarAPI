@@ -2,7 +2,7 @@ from django.urls import path
 
 from company.api.installer_api.views import InstallerListView, InstallerEditDeleteView, Login, Logout, \
     ChangePasswordView, InstallerPasswordReset, ResetPasswordAPI, CustomerListView, CustomerEditDeleteView, \
-    AllFileTypeView, AddCustomerFiles, CommonFileView, CommonCustomerFileView, PvApplicationView
+    AllFileTypeView, AddCustomerFiles, CommonFileView, CommonCustomerFileView, PvApplicationView, EmailDocuments
 
 urlpatterns = [
     path('login/', Login.as_view(), name='installer-login'),  # post request only - login
@@ -14,6 +14,7 @@ urlpatterns = [
     path('file-upload/', AddCustomerFiles.as_view(), name='file-upload'),
 
     path('pv-application/<int:company_id>/', PvApplicationView.as_view(), name='pv-application'),
+    path('send-documents-email/', EmailDocuments.as_view(), name='send-documents-email'),
 
     # path('customer-list/', CustomerListView.as_view(), name='customer-list'),
 

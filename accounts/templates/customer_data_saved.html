@@ -118,7 +118,7 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
 <table id="u_content_image_2" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
-      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;font-family:arial,helvetica,sans-serif;" align="left">
+      <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:40px 10px 10px;font-family:arial,helvetica,sans-serif;" align="left">
 
 <table width="100%" cellpadding="0" cellspacing="0" border="0" >
   <tr>
@@ -151,27 +151,36 @@ table, td { color: #000000; } a { color: #0000ee; text-decoration: underline; } 
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 30px 30px 40px;font-family:arial,helvetica,sans-serif;" align="left">
 
   <div class="v-text-align" style="color: #333333; line-height: 140%; text-align: left; word-wrap: break-word;">
-    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Crimson Text', serif; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 22px; line-height: 30.8px;">Dear Sir/Madam,</span></strong></span></p>
-<p style="font-size: 14px; line-height: 100%;">&nbsp;</p>
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Please see attached {{file_type}} for: {{job.customer_id.first_name}} {{job.customer_id.last_name}} of <strong><br>
-  {{job.street}}, {{job.city}}, {{job.state}} {{job.postcode}}</strong>
-   ! </span></p>
-      <p style="font-size: 14px; line-height: 140%;">
-        <span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">
-          Please process the requirements and let us know if there are any issues that we can resolve.
+    <p style="font-size: 14px; line-height: 140%;"><span style="font-family: 'Crimson Text', serif; font-size: 14px; line-height: 19.6px;"><strong><span style="font-size: 22px; line-height: 30.8px;">Dear {{company.company_name}}!</span></strong></span></p>
 
-      </span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;"> Customer details has been updated by {{user.first_name}} {{user.last_name}}. Please proceed to next step. </span></p>
+      <p style="font-size: 14px; line-height: 100%;">
+          <span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">
+               Job Details:<br/>
+          Customer name : {{customer.first_name}} {{customer.last_name}} <br/>
+          Job :  {{job.job_number}} <br/>
+         Address : {{job.street}}, {{job.city}}, {{job.state}} {{job.postcode}}<br/>
+          </span>
+      </p>
     <table id="u_content_button_1" style="font-family:arial,helvetica,sans-serif;" role="presentation" cellpadding="0" cellspacing="0" width="100%" border="0">
   <tbody>
     <tr>
       <td class="v-container-padding-padding" style="overflow-wrap:break-word;word-break:break-word;padding:10px 40px;font-family:arial,helvetica,sans-serif;" align="left">
+
+<div class="v-text-align" align="left">
+  <!--[if mso]><table width="100%" cellpadding="0" cellspacing="0" border="0" style="border-spacing: 0; border-collapse: collapse; mso-table-lspace:0pt; mso-table-rspace:0pt;font-family:arial,helvetica,sans-serif;"><tr><td class="v-text-align" style="font-family:arial,helvetica,sans-serif;" align="left"><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" href="https://e4.solar" style="height:47px; v-text-anchor:middle; width:456px;" arcsize="6.5%" strokecolor="#ced4d9" strokeweight="3px" fillcolor="#91a5e2"><w:anchorlock/><center style="color:#000000;font-family:arial,helvetica,sans-serif;"><![endif]-->
+    <a href="" target="_blank" class="v-size-width" style="box-sizing: border-box;display: inline-block;font-family:arial,helvetica,sans-serif;text-decoration: none;-webkit-text-size-adjust: none;text-align: center;color: #000000; background-color: #91a5e2; border-radius: 3px;-webkit-border-radius: 3px; -moz-border-radius: 3px; width:100%; max-width:100%; overflow-wrap: break-word; word-break: break-word; word-wrap:break-word; mso-border-alt: none;border-top-color: #ced4d9; border-top-style: solid; border-top-width: 3px; border-left-color: #ced4d9; border-left-style: solid; border-left-width: 3px; border-right-color: #ced4d9; border-right-style: solid; border-right-width: 3px; border-bottom-color: #ced4d9; border-bottom-style: solid; border-bottom-width: 3px;">
+      <span class="v-padding" style="display:block;padding:15px 40px;line-height:120%;"><span style="font-size: 14px; line-height: 16.8px;">Login</span></span>
+    </a>
+  <!--[if mso]></center></v:roundrect></td></tr></table><![endif]-->
+</div>
 
       </td>
     </tr>
   </tbody>
 </table>
 
-<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 22px; line-height: 30.8px;"><strong><span style="line-height: 30.8px; font-family: 'Crimson Text', serif; font-size: 22px;">Thanks.</span></strong></span><br /><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">Admin<br/> {{job.company}}</span></p>
+<p style="font-size: 14px; line-height: 140%;"><span style="font-size: 22px; line-height: 30.8px;"><strong><span style="line-height: 30.8px; font-family: 'Crimson Text', serif; font-size: 22px;">Thanks.</span></strong></span><br /><span style="font-size: 18px; line-height: 25.2px; font-family: 'Crimson Text', serif;">Admin<br/>{{company.company_name}}</span></p>
   </div>
       </td>
     </tr>

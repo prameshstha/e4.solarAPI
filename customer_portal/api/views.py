@@ -3,12 +3,21 @@ from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
 from rest_framework import generics
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from DarwinSolar.settings import AWS_STORAGE_BUCKET_NAME, AWS_ACCESS_KEY_ID, \
     AWS_SECRET_ACCESS_KEY, AWS_SES_REGION_NAME
 import boto3
+
+from accounts.api.serializer import CustomUserSerializer
+
+from DarwinSolar.utils import EmailThread
+from accounts.models import CustomUser, InstallerUser
+from company.api.installer_api.authentication import InstallerTokenAuthentication
 from customer_portal.api.serializer import CustomerFilesSerializer, JobDetailsSerializer, FileTypeSerializer
+
+from company.models import Company
 from customer_portal.models import CustomerFiles, JobDetails, FileType
 
 # ins client
@@ -67,6 +76,72 @@ class CustomerJob(generics.RetrieveUpdateDestroyAPIView):
     queryset = JobDetails.objects.all()
     serializer_class = JobDetailsSerializer
     lookup_field = 'customer_id'
+
+
+class CustomerJobEditByUser(generics.RetrieveUpdateDestroyAPIView):
+    authentication_classes = [InstallerTokenAuthentication]
+    queryset = JobDetails.objects.all()
+    serializer_class = JobDetailsSerializer
+    lookup_field = 'customer_id'
+
+
+def send_email_to_user(company_id, job, customer, user):
+    company = Company.objects.get(id=company_id)
+    merge_data = {
+        'user': user,
+        'job': job,
+        'customer': customer,
+        'company': company
+    }
+    # print(company.company_users.all().values_list('email', flat=True))
+    user_email_list = list(company.company_users.all().values_list('email',flat=True))
+    try:
+        email_subject = f"{job.job_number} of {job.customer_id.first_name} {job.customer_id.last_name}"
+        email_html_body = render_to_string(
+            "customer_data_saved.html", merge_data)
+        from_email = user.email  # change form email according to company settings 16/08/2022
+        send_email = EmailMultiAlternatives(
+            email_subject,
+            email_html_body,
+            from_email,
+            user_email_list,
+            # ['reception@darwinsolar.com.au']
+        )
+        send_email.attach_alternative(email_html_body, "text/html")
+        EmailThread(send_email).start()  # to send email faster
+    except Exception as e:
+        print(e)
+    pass
+
+
+class EditCustomerAllDetails(APIView):
+    authentication_classes = [InstallerTokenAuthentication]
+
+    def patch(self, request, **kwargs):
+        # print(request.data, kwargs)
+        is_finalized = kwargs.get('is_finalized')
+        # print('finalize', is_finalized,  eval(is_finalized))
+        user_id = request.data.get('user')
+        user = InstallerUser.objects.get(id=user_id)
+        job = JobDetails.objects.get(job_number=request.data.get('job_number'))
+        customer = CustomUser.objects.get(id=request.data.get('customer_id'))
+        job_serializer = JobDetailsSerializer(job, data=request.data, partial=True)
+        customer_serializer = CustomUserSerializer(customer, data=request.data, partial=True)
+        # print(job_serializer.is_valid(), customer_serializer.is_valid())
+        # print(job_serializer.errors, customer_serializer.errors)
+        if job_serializer.is_valid():
+            job = job_serializer.save()
+            if eval(is_finalized):
+                # print('final')
+                job.finalized_by = user
+                job.save()
+                # if save send notification to reception
+                send_email_to_user(request.data.get('company'), job, customer, user)
+            if customer_serializer.is_valid():
+                customer_serializer.save()
+
+
+        return Response('tested', 200)
 
 
 def modify_input_for_multiple_files(customer_id, job_number, image_list):
