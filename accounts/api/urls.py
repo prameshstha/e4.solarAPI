@@ -2,7 +2,7 @@ from rest_framework.authtoken.views import obtain_auth_token
 from django.urls import path, include
 
 from accounts.api.views import CustomerListView, CustomerEditDeleteView, Login, Logout, RegistrationView, \
-    ChangePasswordView, UpdateNmiFromLink, GetLoggedInUser, TestPdf
+    ChangePasswordView, UpdateNmiFromLink, GetLoggedInUser, AllRetailers, AllRetailerForms, EditDeleteAllRetailersView, EditDeleteAllRetailersForms, TestPdf
 
 urlpatterns = [
     path('login/', Login.as_view(), name='login-token'),  # post request only - login
@@ -18,7 +18,14 @@ urlpatterns = [
 
     # path('test-form-email/', TestFormEmail.as_view(), name='test-form-email'),
 
-    path('update-nmi/', UpdateNmiFromLink.as_view(), name='test-form-filed'),
+    path('update-nmi/', UpdateNmiFromLink.as_view(), name='update-nmi'),
+
+    path('all-retailers/', AllRetailers.as_view(), name='all-retailers'),
+    path('edit-delete-retailers/<int:pk>/', EditDeleteAllRetailersView.as_view(), name='edit-delete-retailers'),
+    path('all-retailer-forms/<int:retailer_id>/', AllRetailerForms.as_view(), name='all-retailer-forms'),
+    path('edit-delete-retailer-form/<int:pk>/', EditDeleteAllRetailersForms.as_view(), name='edit-delete-retailer-form'),
+
+
     path('test-pdf/', TestPdf.as_view(), name='test-form-email'),
     # password_reset/confirm/ to change password form api front end
     # path('change-request/', ChangePasswordView.as_view(), name='change-password'),  # patch request

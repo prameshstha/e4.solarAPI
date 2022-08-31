@@ -1,7 +1,7 @@
 from rest_framework import serializers
 from accounts.models import CustomUser
 from customer_portal.api.serializer import CustomerFilesSerializer, JobDetailsSerializer
-from customer_portal.models import CustomerFiles, JobDetails, FileType
+from customer_portal.models import CustomerFiles, JobDetails, FileType, ElectricityRetailers
 
 
 class AllCustomUserSerializer(serializers.ModelSerializer):
@@ -47,9 +47,10 @@ class CustomUserSerializer(serializers.ModelSerializer):
         # return None
 
     def get_customer_job(self, instance):
-        # print('instance cj', self.context.get('view').kwargs.get('company_id'))
+        # print('instance cj', self.context.get('view').kwargs.get('company_id'), instance.id)
         company_id = self.context.get('view').kwargs.get('company_id')
         qs = JobDetails.objects.filter(customer_id=instance.id, company=company_id).values()
+        # print(qs)
         return qs
         # if qs:
         #     cust_job = []
@@ -128,3 +129,10 @@ class ChangePasswordSerializer(serializers.Serializer):
     """
     old_password = serializers.CharField(required=True)
     new_password = serializers.CharField(required=True)
+
+
+class ElectricityRetailersSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = ElectricityRetailers
+        fields = '__all__'

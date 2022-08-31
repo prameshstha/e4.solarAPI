@@ -170,7 +170,7 @@ class CommonCustomerFileView(APIView):
             dict['solar_panel'] = f_pan['file'] if f_pan else ''
             dict['inverter'] = f_inv['file'] if f_inv else ''
             dict['hotwater'] = f_hw['file'] if f_hw else ''
-            dict['aircon'] = f_ac['file']if f_ac else ''
+            dict['aircon'] = f_ac['file'] if f_ac else ''
             return Response(dict, 200)
         return Response('Not now', 200)
 
@@ -356,6 +356,13 @@ class AddCustomerFiles(APIView):
         if fileSerializer.is_valid():
             print('uploaded file')
             uploaded_file = fileSerializer.save()
+            file_type_id = request.data['file_type_id']
+            print(file_type_id)
+            if file_type_id != 'undefined':
+                file = FileType.objects.get(id=file_type_id)
+                print(file.retailer.id)
+                uploaded_file.retailer = file.retailer
+                uploaded_file.save()
 
             if uploaded_file:
                 print('file uploaded', uploaded_file.file)
@@ -383,6 +390,12 @@ class AddCustomerFiles(APIView):
             fileSerializer.errors['status'] = False
             data['error'] = fileSerializer.errors
             return Response(data, 409)
+        # return Response('good', 200)
+
+
+# @receiver(post_save, sender=FileType)
+# def save_email(sender, instance, created, **kwargs):
+#     FileType.objects.filter(retailer=instance.retailer).update(to_email=instance.retailer.email)
 
 
 class PvApplicationView(APIView):
@@ -401,7 +414,8 @@ class PvApplicationView(APIView):
         email_files = []
         list_file = {}
         for i in files:
-            list_file['customer_file'] = CustomerFiles.objects.get(file_type=i, company=company_id, customer_id=customer_id)
+            list_file['customer_file'] = CustomerFiles.objects.get(file_type=i, company=company_id,
+                                                                   customer_id=customer_id)
             list_file['file_type'] = FileType.objects.get(id=i, company=company_id)
             email_files.append(list_file.copy())
         email_common_files = []
@@ -425,7 +439,7 @@ def pv_application_email(email_file, email_common_files, customer, company, job)
     merge_data = {
         'company': 'test Customer',
         'customer_email': 'customer email',
-        'job': job,}
+        'job': job, }
     to_email = []
     for a in email_file:
         # print(media_url+str(a['customer_file'].file))
@@ -466,7 +480,7 @@ def pv_application_email(email_file, email_common_files, customer, company, job)
             file_s3_aws = apiRequest.get(media_url + str(b['common_file'].file))
             # print(get_filename_ext(str(b['common_file'].file)))
             file_name, ext = get_filename_ext(str(b['common_file'].file))
-            send_email.attach(b['common_file'].file_name+ext, file_s3_aws.content)
+            send_email.attach(b['common_file'].file_name + ext, file_s3_aws.content)
 
         send_email.attach_alternative(email_html_body, "text/html")
         EmailThread(send_email).start()  # to send email faster
@@ -475,6 +489,7 @@ def pv_application_email(email_file, email_common_files, customer, company, job)
 
 
 regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'
+
 
 # Define a function for
 # for validating an Email
@@ -533,7 +548,7 @@ def send_email_with_files_to_all(company, user, job, customer, customer_files):
             full_file_path = f"https://{AWS_S3_CUSTOM_DOMAIN}/{a.file}"
             download = apiRequest.get(full_file_path)
             file_name, ext = get_filename_ext(str(a.file))
-            send_email.attach(a.file_name+ext, download.content)  # attach file form s3
+            send_email.attach(a.file_name + ext, download.content)  # attach file form s3
             # send_email.attach_alternative(email_html_body, "text/html")
             # EmailThread(send_email).start()  # to send email faster
 

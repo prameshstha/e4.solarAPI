@@ -10,7 +10,7 @@ class InstallerUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = InstallerUser
-        fields = ['id', 'first_name', 'last_name', 'email', 'role', 'city']
+        fields = ['id', 'first_name', 'last_name', 'email', 'role', 'city', 'password']
 
     def get_role(self, instance):
         # print('is_admin', instance, self.context.get('view').kwargs.get('company_id'))
@@ -20,6 +20,15 @@ class InstallerUserSerializer(serializers.ModelSerializer):
             return 'Admin'
         else:
             return 'User'
+
+    def save(self):
+        password = self.validated_data['password']
+        account = InstallerUser(email=self.validated_data['email'], first_name=self.validated_data['first_name'],
+                                last_name=self.validated_data['last_name'])
+
+        account.set_password(password)
+        account.save()
+        return account
 
 
 class RegistrationInstallerUserSerializer(serializers.ModelSerializer):

@@ -2,7 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from customer_portal.models import CustomerFiles, JobDetails, FileType, InstallationPhotos, PanelSerialNumbers, \
-    InverterPhotos, CommonCustomerFile, JobEditHistory, FileFieldSetting
+    InverterPhotos, CommonCustomerFile, JobEditHistory, FileFieldSetting, ElectricityRetailers
 
 admin.site.register(CustomerFiles)
 admin.site.register(JobDetails)
@@ -13,3 +13,4 @@ admin.site.register(PanelSerialNumbers)
 admin.site.register(CommonCustomerFile)
 admin.site.register(JobEditHistory)
 admin.site.register(FileFieldSetting)
+admin.site.register(ElectricityRetailers)

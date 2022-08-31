@@ -34,6 +34,18 @@ def upload_file_path(instance, filename):
     )
 
 
+class ElectricityRetailers(models.Model):
+    retailer_name = models.CharField(max_length=255)
+    retailer_abn = models.CharField(max_length=255, null=True, blank=True)
+    phone = models.CharField(max_length=255, null=True, blank=True)
+    email = models.CharField(max_length=255, null=True, blank=True)
+    state = models.CharField(max_length=255, null=True, blank=True)
+    website = models.CharField(max_length=255, null=True, blank=True)
+
+    def __str__(self):
+        return str(self.retailer_name)
+
+
 class JobDetails(models.Model):
     job_number = models.CharField(max_length=120)
     job_type = models.CharField(max_length=120, blank=True)
@@ -46,6 +58,8 @@ class JobDetails(models.Model):
     state = models.CharField(max_length=120, blank=True)
     country = models.CharField(max_length=120, blank=True)
     # change address to address_id after we get address database
+    energy_retailer = models.ForeignKey(ElectricityRetailers, on_delete=models.CASCADE, related_name='energy_retailer_job', blank=True, null=True)
+    retailer_request = models.BooleanField(default=True)
     aircon = models.CharField(max_length=120, blank=True)
     no_of_panels = models.CharField(max_length=120, blank=True)
     solar_panel = models.CharField(max_length=120, blank=True)
@@ -95,9 +109,10 @@ class JobEditHistory(models.Model):
 
 class FileType(models.Model):
     file_type = models.CharField(max_length=255)
-    file_details = models.CharField(max_length=255)
-    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_file_type')
-    to_email = models.EmailField(max_length=255, null=True, blank=True)
+    file_details = models.CharField(max_length=255, null=True, blank=True)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_file_type', null=True, blank=True)
+    retailer = models.ForeignKey(ElectricityRetailers, on_delete=models.CASCADE, related_name='retailer_file_type', null=True, blank=True)
+    to_email = models.CharField(max_length=255, null=True, blank=True)
 
     def __str__(self):
         return str(self.file_type)
@@ -152,6 +167,7 @@ class CustomerFiles(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     company = models.ForeignKey(Company, on_delete=models.CASCADE, related_name='company_files', blank=True, null=True)
+    retailer = models.ForeignKey(ElectricityRetailers, on_delete=models.CASCADE, related_name='retailer_files', blank=True, null=True)
 
     def __str__(self):
         return str(self.file_type) + ' - ' + str(self.job_number) + ' - ' + str(self.file_name)

@@ -60,6 +60,7 @@ class RegisterCompany(APIView):
                 return Response({'Error': 'User already exists or not valid User data!!!'}, 409)
         except Exception as e:
             print('eee', e)
+            print(type(e).__name__, '--', e.args)
             return Response({'Error': 'Something went wrong'}, 409)
 
         # view = Login.post(self, request)
@@ -293,24 +294,7 @@ class CompanyCustomerListView(generics.ListCreateAPIView):
 
 
 class CompanyUserListView(generics.ListCreateAPIView):
-    # permission_classes = [IsAuthenticated]
-    # authentication_classes = [InstallerTokenAuthentication]
-    # def get_authenticators(self):
-    #     print('authenticator', self.request, self.kwargs)
-    #     is_installer = self.kwargs.get('is_installer')
-    #     print(bool(is_installer))
-    #     if bool(is_installer):
-    #         return [InstallerTokenAuthentication]
-    #     else:
-    #         return [IsAuthenticated]
-    # def get_permissions(self):
-    #     print ('requestssss', self.request.data, self.kwargs)
-    #     is_installer = self.kwargs.get('is_installer')
-    #     print(bool(is_installer))
-    #     if not bool(is_installer):
-    #         return [IsAuthenticated]
-    #     else:
-    #         return [InstallerTokenAuthentication]
+    authentication_classes = [InstallerTokenAuthentication]
 
     def get_queryset(self):
         company_id = self.kwargs['company_id']
@@ -318,7 +302,7 @@ class CompanyUserListView(generics.ListCreateAPIView):
         queryset = Company.objects.get(id=company_id)
         company_users = queryset.company_users.all()
 
-        # print(queryset.company_customers.all())
+        print(queryset.company_customers.all())
         # a = CustomUserSerializer(data=company_customers)
         return company_users
 

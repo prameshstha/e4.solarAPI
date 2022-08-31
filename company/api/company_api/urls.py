@@ -13,7 +13,7 @@ urlpatterns = [
     path('company-address/<int:company_id>/', CompanyAddress.as_view(), name='company-address'),
 
     path('company-customer-list/<int:company_id>/', CompanyCustomerListView.as_view(), name='customer-list'),
-    path('company-user-list/<int:company_id>/<str:is_installer>/', CompanyUserListView.as_view(), name='users-list'),
+    path('company-user-list/<int:company_id>/', CompanyUserListView.as_view(), name='users-list'),
     path('company-job-list/<int:company_id>/', CompanyJobListView.as_view(), name='company-job-list'),
     path('edit-delete/<int:company_id>/', CompanyEditDeleteView.as_view(), name='company-edit-delete'),
 

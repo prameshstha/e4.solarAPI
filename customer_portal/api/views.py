@@ -10,7 +10,7 @@ from DarwinSolar.settings import AWS_STORAGE_BUCKET_NAME, AWS_ACCESS_KEY_ID, \
     AWS_SECRET_ACCESS_KEY, AWS_SES_REGION_NAME
 import boto3
 
-from accounts.api.serializer import CustomUserSerializer
+from accounts.api.serializer import CustomUserSerializer, ElectricityRetailersSerializer
 
 from DarwinSolar.utils import EmailThread
 from accounts.models import CustomUser, InstallerUser
@@ -18,7 +18,7 @@ from company.api.installer_api.authentication import InstallerTokenAuthenticatio
 from customer_portal.api.serializer import CustomerFilesSerializer, JobDetailsSerializer, FileTypeSerializer
 
 from company.models import Company
-from customer_portal.models import CustomerFiles, JobDetails, FileType
+from customer_portal.models import CustomerFiles, JobDetails, FileType, ElectricityRetailers
 
 # ins client
 client = boto3.client('s3', region_name=AWS_SES_REGION_NAME,
@@ -71,6 +71,22 @@ class EditDeleteFileTypeView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = FileTypeSerializer
 
 
+class AllRetailers(generics.ListAPIView):
+    authentication_classes = [InstallerTokenAuthentication]
+    queryset = ElectricityRetailers.objects.all()
+    serializer_class = ElectricityRetailersSerializer
+
+
+class AllRetailerForms(generics.ListAPIView):
+    authentication_classes = [InstallerTokenAuthentication]
+
+    def get_queryset(self):
+        retailer_id = self.kwargs['retailer_id']
+        queryset = FileType.objects.filter(retailer=retailer_id)
+        return queryset
+    serializer_class = FileTypeSerializer
+
+
 class CustomerJob(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsAuthenticated]
     queryset = JobDetails.objects.all()
@@ -118,28 +134,46 @@ class EditCustomerAllDetails(APIView):
     authentication_classes = [InstallerTokenAuthentication]
 
     def patch(self, request, **kwargs):
-        # print(request.data, kwargs)
+        print(request.data, kwargs)
         is_finalized = kwargs.get('is_finalized')
+        save_retailer = request.data.get('save_retailer', 'False')
+        old_energy_retailer = request.data.get('energy_retailer_id')
         # print('finalize', is_finalized,  eval(is_finalized))
-        user_id = request.data.get('user')
-        user = InstallerUser.objects.get(id=user_id)
+        print('save retailerrrr', save_retailer)
         job = JobDetails.objects.get(job_number=request.data.get('job_number'))
-        customer = CustomUser.objects.get(id=request.data.get('customer_id'))
         job_serializer = JobDetailsSerializer(job, data=request.data, partial=True)
-        customer_serializer = CustomUserSerializer(customer, data=request.data, partial=True)
-        # print(job_serializer.is_valid(), customer_serializer.is_valid())
-        # print(job_serializer.errors, customer_serializer.errors)
-        if job_serializer.is_valid():
-            job = job_serializer.save()
-            if eval(is_finalized):
-                # print('final')
-                job.finalized_by = user
-                job.save()
-                # if save send notification to reception
-                send_email_to_user(request.data.get('company'), job, customer, user)
-            if customer_serializer.is_valid():
-                customer_serializer.save()
+        if eval(save_retailer):
+            print(save_retailer)
+            retailer_files = CustomerFiles.objects.filter(retailer=old_energy_retailer)
+            retailer_files.delete()
+            # CustomerFiles.file.delete(save=False)
+            for r in retailer_files:
+                try:
+                    del_s3_file(str(r.file))
+                except Exception as er:
+                    print(er)
+            job.retailer_request = False
 
+        if eval(is_finalized):
+            user_id = request.data.get('user')
+            user = InstallerUser.objects.get(id=user_id)
+            customer = CustomUser.objects.get(id=request.data.get('customer_id'))
+            customer_serializer = CustomUserSerializer(customer, data=request.data, partial=True)
+            # print(job_serializer.is_valid(), customer_serializer.is_valid())
+            # print(job_serializer.errors, customer_serializer.errors)
+            if job_serializer.is_valid():
+                job = job_serializer.save()
+                if eval(is_finalized):
+                    # print('final')
+                    job.finalized_by = user
+                    job.save()
+                    # if save send notification to reception
+                    send_email_to_user(request.data.get('company'), job, customer, user)
+                if customer_serializer.is_valid():
+                    customer_serializer.save()
+        else:
+            if job_serializer.is_valid():
+                job = job_serializer.save()
 
         return Response('tested', 200)
 
