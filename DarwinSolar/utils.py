@@ -20,8 +20,8 @@ def get_filename_ext(filename):
     return name, ext
 
 
-# my_domain = 'https://e4.solar/'
-my_domain = 'http://localhost:3000/'
+my_domain = 'https://e4.solar/'
+# my_domain = 'http://localhost:3000/'
 
 # if DEBUG:
 #     my_domain = 'http://localhost:3000/'
