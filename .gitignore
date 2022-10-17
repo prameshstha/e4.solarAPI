@@ -6,6 +6,8 @@
 .platform/*
 .ebextensions/*
 
+/o365_token.txt
+
 # key file
 /e4sk.py
 #virtual env

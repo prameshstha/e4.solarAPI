@@ -23,7 +23,10 @@ EMAIL_BACKEND = k.EMAIL_BACKEND
 AWS_ACCESS_KEY_ID = k.AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY = k.AWS_SECRET_ACCESS_KEY
 AWS_SES_REGION_NAME = k.AWS_SES_REGION_NAME
-AWS_SES_REGION_ENDPOINT = k.AWS_SES_REGION_ENDPOINT
+O365_MAIL_CLIENT_ID = k.O365_MAIL_CLIENT_ID
+O365_MAIL_CLIENT_SECRET = k.O365_MAIL_CLIENT_SECRET
+O365_MAIL_TENANT_ID = k.O365_MAIL_TENANT_ID
+# AWS_SES_REGION_ENDPOINT = k.AWS_SES_REGION_ENDPOINT
 
 # Aws s3 storage config
 AWS_STORAGE_BUCKET_NAME = k.AWS_STORAGE_BUCKET_NAME
@@ -33,6 +36,13 @@ AWS_DEFAULT_ACL = None
 STATICFILES_STORAGE = k.STATICFILES_STORAGE
 AWS_S3_CUSTOM_DOMAIN = k.AWS_S3_CUSTOM_DOMAIN
 
+from O365 import Account
+credentials = (O365_MAIL_CLIENT_ID, O365_MAIL_CLIENT_SECRET)
+O365_Email = Account(credentials, auth_flow_type='credentials', tenant_id=O365_MAIL_TENANT_ID)
+if O365_Email.authenticate():
+   print('Authenticated!')
+else:
+    print('nott Authenticated')
 DEBUG = True
 # if DEBUG:
 #     EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
@@ -126,6 +136,7 @@ CORS_ALLOW_HEADERS = [
     "x-requested-with",
 ]
 # added for cors management
+CSRF_TRUSTED_ORIGINS = ['https://e4-api.azurewebsites.net']
 ROOT_URLCONF = 'DarwinSolar.urls'
 
 TEMPLATES = [

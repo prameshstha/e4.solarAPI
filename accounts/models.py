@@ -10,7 +10,8 @@ from django.dispatch import receiver
 from django_rest_passwordreset.signals import reset_password_token_created
 from django.core.mail import send_mail, EmailMultiAlternatives
 
-from DarwinSolar.utils import EmailThread
+from DarwinSolar.settings import O365_Email
+from DarwinSolar.utils import EmailThread, my_domain
 
 
 @receiver(reset_password_token_created)
@@ -26,8 +27,8 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
     if user.first_name == '':
         customer = user.email
     print(customer)
-    # pw_reset_link = 'http://localhost:3000/' + link
-    pw_reset_link = 'darwin.solar/' + link  # change in production level
+
+    pw_reset_link = my_domain + link  # change in production level
     merge_data = {
         'customer': customer,
         'pw_reset_link': pw_reset_link  # change in production level
@@ -35,17 +36,24 @@ def password_reset_token_created(sender, instance, reset_password_token, *args, 
 
     email_subject = "Password Reset for {title}".format(title="Darwin Solar Portal")
     email_html_body = render_to_string("reset_password_email.html", merge_data)
-    from_email = "reception@darwinsolar.com.au"
+    from_email = "admin@darwinsolar.com.au"
     to_email = [reset_password_token.user.email]
-    send_email = EmailMultiAlternatives(
-        email_subject,
-        email_html_body,
-        from_email,
-        to_email,
 
-    )
-    send_email.attach_alternative(email_html_body, "text/html")
-    EmailThread(send_email).start()  # to send email faster
+    send_email = O365_Email.new_message(resource=from_email)
+    send_email.to.add(to_email)
+    send_email.subject = email_subject
+    send_email.body = email_html_body
+    send_email.send()
+    print('should send email')
+    # send_email = EmailMultiAlternatives(
+    #     email_subject,
+    #     email_html_body,
+    #     from_email,
+    #     to_email,
+    #
+    # )
+    # send_email.attach_alternative(email_html_body, "text/html")
+    # EmailThread(send_email).start()  # to send email faster
 
 
 class CustomUserManager(BaseUserManager):

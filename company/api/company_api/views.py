@@ -12,7 +12,7 @@ from rest_framework.views import APIView
 
 from accounts.api.serializer import AllCustomUserSerializer
 
-from DarwinSolar.utils import EmailThread, my_domain
+from DarwinSolar.utils import EmailThread, my_domain, email_O365
 from accounts.models import InstallerUser, InstallerToken
 from company.api.app.views import del_s3_file
 from company.api.installer_api.authentication import InstallerTokenAuthentication
@@ -93,14 +93,7 @@ def sendComapayCreatedEmail(user, company):
     email_html_body = render_to_string("company_invitation.html", merge_data)
     from_email = "reception@darwinsolar.com.au"
     to_email = [user.email]
-    send_email = EmailMultiAlternatives(
-        email_subject,
-        email_html_body,
-        from_email,
-        to_email,
-    )
-    send_email.attach_alternative(email_html_body, "text/html")
-    EmailThread(send_email).start()  # to send email faster
+    email_O365(to_email=to_email, email_subject=email_subject, email_html_body=email_html_body, from_email=from_email)
 
 
 class ActivateCompany(APIView):
@@ -358,15 +351,9 @@ class AddCompanyUser(APIView):
                 email_html_body = render_to_string("user_invitation.html", merge_data)
                 from_email = "reception@darwinsolar.com.au"
                 to_email = [user_email]
-                send_email = EmailMultiAlternatives(
-                    email_subject,
-                    email_html_body,
-                    from_email,
-                    to_email,
-                )
-                send_email.attach_alternative(email_html_body, "text/html")
-                EmailThread(send_email).start()  # to send email faster
 
+                email_O365(to_email=to_email, email_subject=email_subject, email_html_body=email_html_body,
+                           from_email=from_email)
                 return Response(data, 200)
             except InstallerUser.MultipleObjectsReturned:
                 data = 'Something is wrong. Please try again.'
@@ -441,15 +428,8 @@ def send_welcome_email(user, company):
     email_html_body = render_to_string("welcome_installer.html", merge_data)
     from_email = "reception@darwinsolar.com.au"
     to_email = [user.email]
-    send_email = EmailMultiAlternatives(
-        email_subject,
-        email_html_body,
-        from_email,
-        to_email,
 
-    )
-    send_email.attach_alternative(email_html_body, "text/html")
-    EmailThread(send_email).start()   # to send email faster
+    email_O365(to_email=to_email, email_subject=email_subject, email_html_body=email_html_body, from_email=from_email)
 
 
 class ChangeAdmin(APIView):

@@ -1,3 +1,5 @@
+from io import BytesIO
+
 import requests as apiRequest
 from django.core.mail import EmailMultiAlternatives
 from django.template.loader import render_to_string
@@ -12,7 +14,7 @@ import boto3
 
 from accounts.api.serializer import CustomUserSerializer, ElectricityRetailersSerializer
 
-from DarwinSolar.utils import EmailThread
+from DarwinSolar.utils import EmailThread, email_O365
 from accounts.models import CustomUser, InstallerUser
 from company.api.installer_api.authentication import InstallerTokenAuthentication
 from customer_portal.api.serializer import CustomerFilesSerializer, JobDetailsSerializer, FileTypeSerializer
@@ -110,21 +112,14 @@ def send_email_to_user(company_id, job, customer, user):
         'company': company
     }
     # print(company.company_users.all().values_list('email', flat=True))
-    user_email_list = list(company.company_users.all().values_list('email',flat=True))
+    user_email_list = list(company.company_users.all().values_list('email', flat=True))
     try:
         email_subject = f"{job.job_number} of {job.customer_id.first_name} {job.customer_id.last_name}"
         email_html_body = render_to_string(
             "customer_data_saved.html", merge_data)
         from_email = user.email  # change form email according to company settings 16/08/2022
-        send_email = EmailMultiAlternatives(
-            email_subject,
-            email_html_body,
-            from_email,
-            user_email_list,
-            # ['reception@darwinsolar.com.au']
-        )
-        send_email.attach_alternative(email_html_body, "text/html")
-        EmailThread(send_email).start()  # to send email faster
+        email_O365(to_email=user_email_list, email_subject=email_subject,
+                   email_html_body=email_html_body, from_email=from_email)
     except Exception as e:
         print(e)
     pass
@@ -260,6 +255,7 @@ def send_email_about_files(path, file_type, customer_id, file_name, job, ext):
         'customer_email': 'customer email',
         'job': job,
     }
+    email_attachment = []
     try:
         email_subject = "File for this customer"
         email_html_body = render_to_string("send_coc_attachment.html" if file_type == 'COC' else "send_pv_application.html", merge_data)
@@ -276,6 +272,9 @@ def send_email_about_files(path, file_type, customer_id, file_name, job, ext):
         download = apiRequest.get(path)
         LineDiagram = apiRequest.get('https://darwinsolar-bucket.s3.amazonaws.com/Files/LineDiagram.pdf')
         cc = apiRequest.get('https://darwinsolar-bucket.s3.amazonaws.com/Files/cc.png')
+        # attachment = BytesIO(download.content)
+        # attachment = BytesIO(download.content)
+        # attachment = BytesIO(download.content)
 
         send_email.attach(file_name, download.content)  # attach file form s3
         if file_type == 'Power and Water':
@@ -283,6 +282,9 @@ def send_email_about_files(path, file_type, customer_id, file_name, job, ext):
             send_email.attach('cc.png', cc.content)  # attach file form s3
         send_email.attach_alternative(email_html_body, "text/html")
         # EmailThread(send_email).start()  # to send email faster
+
+        email_O365(to_email=to_email, email_subject=email_subject, email_html_body=email_html_body,
+                   from_email=from_email, email_attachment=email_attachment)
     except Exception as e:
         print(e)
 
